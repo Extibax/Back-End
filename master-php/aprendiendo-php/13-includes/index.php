@@ -1,4 +1,4 @@
-<?php require_once 'includes/cabecera.php'; ?>
+<?php require_once 'includes/cabecera.php';?>
 
     <!-- Contenido -->
     <div>
@@ -6,4 +6,4 @@
         <p>Texto de prueba de la pagina de inicio</p>
     </div>
 
-<?php require_once 'includes/footer.php'; ?>
+<?php require_once 'includes/footer.php';?>

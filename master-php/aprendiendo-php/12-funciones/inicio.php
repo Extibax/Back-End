@@ -1,6 +1,7 @@
 <?php
 
-function calculator($num1, $num2, $negrita=false){
+function calculator($num1, $num2, $negrita = false)
+{
 
     $sum = $num1 + $num2;
     $rest = $num1 - $num2;
@@ -31,19 +32,22 @@ echo calculator(15, 30, true);
 
 echo calculator(15, 30, false);
 
-function getFirstName($fname){
+function getFirstName($fname)
+{
     $text = "The Fisrt Name is: $fname";
     return $text;
 }
 
-function getLastName($lname){
+function getLastName($lname)
+{
     $text = "The Last Name is: $lname";
     return $text;
 }
 
-function returnFullName($fname, $lname){
+function returnFullName($fname, $lname)
+{
     $text_string = getFirstName($fname)
-    ."<br>".getLastName($lname);
+    . "<br>" . getLastName($lname);
     return $text_string;
 }
 

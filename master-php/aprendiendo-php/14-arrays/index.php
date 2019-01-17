@@ -59,3 +59,9 @@ $contactos = array(
         'email' => 'mia@gmail.com',
     ),
 );
+
+/* echo $contactos[1]['nombre']; */
+
+foreach ($contactos as $key => $contacto) {
+    var_dump($contacto['nombre']);
+}

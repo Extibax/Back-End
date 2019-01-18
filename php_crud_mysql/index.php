@@ -1,27 +1,70 @@
 <?php include 'db.php'?>
 
-<!DOCTYPE html>
-<html lang='es'>
+<?php include 'includes/header.php'?>
 
-<head>
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- BOOSTRAP 4 CDN -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
-        crossorigin="anonymous">
-    <title>CRUD PHP</title>
-</head>
+<div class="container p-4">
 
-<body>
-    <h1>Hello World</h1>
+    <div class="row">
+        <div class="cow-md-4">
 
-    <!-- SCRIPTS -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
-        crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
-        crossorigin="anonymous"></script>
-</body>
+            <?php if (isset($_SESSION['message'])): ?>
+            <div class="alert alert-<?=$_SESSION['message_type']?> alert-dismissible fade show" role="alert">
+                <?=$_SESSION['message']?>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <?php session_unset();?>
+            <?php endif;?>
 
-</html>
+            <div class="card card-body">
+                <form action="save_task.php" method="POST">
+                    <div class="form-group">
+                        <input type="text" name="title" class="form-control" placeholder="Task Title" autofocus>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="description" rows="2" class="form-control" placeholder="Task description"></textarea>
+                    </div>
+                    <input type="submit" class="btn btn-success btn-block" name="save_task" value="Save Task">
+                </form>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Created At</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    $query = "SELECT * FROM tasks";
+                    $result_tasks = mysqli_query($conn, $query);
+                    while ($row = mysqli_fetch_array($result_tasks)): ?>
+                    <tr>
+                        <td>
+                            <?=$row['title']?>
+                        </td>
+                        <td>
+                            <?=$row['description']?>
+                        </td>
+                        <td>
+                            <?=$row['created_at']?>
+                        </td>
+                        <td>
+                            <a href="edit_task.php?id=<?=$row['id']?>" class="btn btn-secondary"><i class="fas fa-marker"></i></a>
+                            <a href="delete_task.php?id=<?=$row['id']?>" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
+                        </td>
+                    </tr>
+                    <?php endwhile;?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+<?php include 'includes/footer.php'?>

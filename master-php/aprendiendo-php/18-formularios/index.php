@@ -51,6 +51,18 @@
         <label for="url">URL:</label>
         <p><input type="url" name="url" id=""></p>
 
+        <label for="areatexto">Area de texto:</label>
+        <p><textarea name="areatexto" id="" cols="30" rows="10"></textarea></p>
+
+        <label for="peliculas">Peliculas:</label>
+        <p>
+            <select>
+                <option value="">Spiderman</option>
+                <option value="">Iron Man</option>
+                <option value="">Capitan America</option>
+            </select>
+        </p>
+
         <label for="">Boton:</label>
         <p><input type="submit" value="Enviar"></p>
     </form>

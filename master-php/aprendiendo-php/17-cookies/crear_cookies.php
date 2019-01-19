@@ -12,3 +12,5 @@
 /* Cookie basica */
 setcookie("miCookie", "Valor de mi Cookie");
 
+/* Cokkie con expiracion */
+setcookie("oneYear", "Valor de mi cookie de 365 dias", time()+(60*60*24*365));

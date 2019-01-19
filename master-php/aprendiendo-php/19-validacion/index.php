@@ -10,14 +10,24 @@
 
 <body>
     <h1>Validar Formulario</h1>
+
+<?php
+if (isset($_GET['error'])) {
+    $error = $_GET['error'];
+    if ($error == 'Faltan_Valores') {
+        echo "<strong style='color: red;'>Introduce los datos correctamente</strong>";
+    }
+}
+?>
+
     <form action="procesar_formulario.php" method="POST">
         <label for="nombre">Nombre</label>
         <p>
-            <input type="text" name="nombre" required pattern="[A-Za-z]+">
+            <input type="text" name="nombre"  pattern="[A-Za-z]+">
         </p>
-        <label for="apellido">Apellidos</label>
+        <label for="apellidos">Apellidos</label>
         <p>
-            <input type="text" name="apellido" required pattern="[A-Za-z]+">
+            <input type="text" name="apellidos" required pattern="[A-Za-z]+">
         </p>
         <label for="edad">Edad</label>
         <p>

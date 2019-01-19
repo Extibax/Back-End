@@ -10,7 +10,11 @@
 /* setcookie("nombre", "valorQueSoloPuedeSerTexto", caducidad, ruta, dominio); */
 
 /* Cookie basica */
-setcookie("miCookie", "Valor de mi Cookie");
+setcookie("myCookie", "Valor de mi Cookie");
 
 /* Cokkie con expiracion */
 setcookie("oneYear", "Valor de mi cookie de 365 dias", time()+(60*60*24*365));
+
+?>
+
+<a href="ver_cookies.php">Ver Cookies</a>

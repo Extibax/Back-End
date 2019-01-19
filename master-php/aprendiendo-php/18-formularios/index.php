@@ -12,10 +12,21 @@
     <h1>Formulario</h1>
     <form action="" method="POST" enctype="multipart/form-data">
         <label for="nombre">Nombre:</label>
-        <p><input type="text" name="nombre" id="" autofocus></p><br>
+        <p><input type="text" name="nombre" id="" autofocus></p>
         <label for="apellido">Apellido:</label>
-        <p><input type="text" name="apellido" pattern="[A-Z ]+"></p><br>
-        <input type="submit" value="Enviar">
+        <p><input type="text" name="apellido" pattern="[A-Z ]+"></p>
+        <label for="">Boton:</label>
+        <p><input type="submit" value="Enviar"></p>
+        <label for="">Sexo:</label>
+        <p>
+            Hombre <input type="checkbox" name="sexo" value="Hombre">
+            Mujer <input type="checkbox" name="sexo" value="Mujer">
+        </p>
+
+        <label for="color">Color: </label>
+        <p><input type="color" name="color"></p>
+
+        label
     </form>
 </body>
 

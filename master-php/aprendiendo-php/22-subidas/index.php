@@ -14,16 +14,17 @@
     </form>
 
     <h1>Listado de Imagenes</h1>
-    <?php 
-    
+    <?php
+
     $gestor = opendir('./images');
-if ($gestor) {
-    while (($image = readdir($gestor)) !== false) {
-        if ($image != '.' && $image != '..') {
-            echo "<img src='images/$image' width='200px'/><br>";
-        }
-    }
-}
+    if ($gestor):
+        while (($image = readdir($gestor)) !== false):
+            if ($image != '.' && $image != '..'):
+                echo "<img src='images/$image' width='200px'/><br>";
+            endif;
+        endwhile;
+    endif;
+
     ?>
 </body>
 </html>

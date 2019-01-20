@@ -17,13 +17,28 @@ if (isset($_GET['error'])) {
     if ($error == 'Faltan_Valores') {
         echo "<strong style='color: red;'>Introduce los datos correctamente</strong>";
     }
+    if ($error == 'nombre') {
+        echo "<strong style='color: red;'>Introduce bien el nombre</strong>";
+    }
+    if ($error == 'apellidos') {
+        echo "<strong style='color: red;'>Los apellidos no son correctos</strong>";
+    }
+    if ($error == 'edad') {
+        echo "<strong style='color: red;'>Introduce una edad correcta</strong>";
+    }
+    if ($error == 'email') {
+        echo "<strong style='color: red;'>El correo es erroneo</strong>";
+    }
+    if ($error == 'pass') {
+        echo "<strong style='color: red;'>Introduce una contraseña de mas de 5 letras</strong>";
+    }
 }
 ?>
 
     <form action="procesar_formulario.php" method="POST">
         <label for="nombre">Nombre</label>
         <p>
-            <input type="text" name="nombre"  pattern="[A-Za-z]+">
+            <input type="text" name="nombre" required pattern="[A-Za-z]+">
         </p>
         <label for="apellidos">Apellidos</label>
         <p>

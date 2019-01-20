@@ -37,6 +37,6 @@ function validateEmail($email)
 
 <?php
 if (isset($_POST['email'])):
-    echo "<h4>".validateEmail($_POST['email'])."</h4>";
+    echo "<h4>" . validateEmail($_POST['email']) . "</h4>";
 endif;
 ?>

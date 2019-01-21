@@ -15,4 +15,3 @@ ALTER TABLE usuarios_renom ADD CONSTRAINT uq_email UNIQUE(email);
 
 # Eliminar una columna #
 ALTER TABLE usuarios_renom DROP website;
-

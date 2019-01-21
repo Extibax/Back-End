@@ -22,11 +22,10 @@ BOGINT
 
 CREATE TABLE usuarios
 (
-    id int(11) auto_increment not null,
-    nombre varchar(100) not null,
-    apellidos varchar(255) default 'Hola que tal',
-    email varchar(100) not null,
-    password varchar(255),
+    id INT(11) auto_increment NOT NULL,
+    nombre VARCHAR(100) NOT NULL,
+    apellidos VARCHAR(255) default 'Hola que tal',
+    email VARCHAR(100) NOT NULL,
+    password VARCHAR(255),
     CONSTRAINT pk_usuarios PRIMARY KEY(id)
 );
-

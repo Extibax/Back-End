@@ -3,5 +3,3 @@ SELECT email, nombre, apellidos FROM usuarios;
 
 # Mostrar todos los campos #
 SELECT * FROM usuarios;
-
-#  #

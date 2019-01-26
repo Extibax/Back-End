@@ -17,4 +17,11 @@ SELECT apellidos, email FROM usuarios WHERE apellidos LIKE '%a%' AND password=12
 SELECT * FROM usuarios WHERE (YEAR(fecha)%2 = 0);
 
 # 5.Mostrar todos los registros cuyo nombre tenga mas de 5 letras y
-que se hayan registrado antes del 2020, y msotrar el nombre en Mayus #
+que se hayan registrado antes del 2020, y mostrar el nombre en Mayus #
+SELECT UPPER(nombre) AS 'Nombre', apellidos FROM usuarios WHERE LENGTH(nombre) > 5 AND YEAR(FECHA) < 2020;
+
+# 6.Ordenar los registos ASC-DESC#
+SELECT * FROM usuarios ORDER BY id DESC;
+
+# 7.Limitar registros LIMIT 3 #
+SELECT * FROM usuarios LIMIT 0, 3;

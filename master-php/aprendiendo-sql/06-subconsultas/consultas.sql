@@ -10,3 +10,6 @@ SELECT * FROM usuarios WHERE id IN (SELECT usuario_id FROM entradas);
 # Mostrar registros que su id no esten dentro de la tabla entradas #
 SELECT * FROM usuarios WHERE id NOT IN (SELECT usuario_id FROM entradas);
 
+# Sacar los usuarios que tengan alguna entrada que en su titulo hable de GTA V #
+SELECT nombre, apellidos FROM usuarios WHERE id 
+    IN (SELECT usuario_id FROM entradas WHERE titulo LIKE "%GTA%");

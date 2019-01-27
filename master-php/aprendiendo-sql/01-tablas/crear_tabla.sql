@@ -29,3 +29,6 @@ CREATE TABLE usuarios
     password VARCHAR(255),
     CONSTRAINT pk_usuarios PRIMARY KEY(id)
 );
+
+# Eliminar base de datos #
+DROP DATABASE usuarios;

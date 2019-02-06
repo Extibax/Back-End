@@ -1,5 +1,4 @@
 <?php
-
 /* Validation of data */
 if (isset($_POST)) 
 {
@@ -8,13 +7,16 @@ if (isset($_POST))
     require_once 'includes/connection.php';
 
     /* Start SESSION */
-    /* session_start(); */
+    if (!isset($_SESSION)) 
+    {
+        session_start();
+    }
 
     /* Collect the registry values */
-    $first_n = isset($_POST['first-name']) ? $_POST['first-name'] : false;
-    $second_n = isset($_POST['second-name']) ? $_POST['second-name'] : false;
-    $email = isset($_POST['email']) ? $_POST['email'] : false;
-    $password = isset($_POST['password']) ? $_POST['email'] : false;
+    $first_n = isset($_POST['first-name']) ? mysqli_real_escape_string($connection, $_POST['first-name']) : false;
+    $second_n = isset($_POST['second-name']) ? mysqli_real_escape_string($connection, $_POST['second-name']) : false;
+    $email = isset($_POST['email']) ? mysqli_real_escape_string($connection, $_POST['email']) : false;
+    $password = isset($_POST['password']) ? mysqli_real_escape_string($connection, $_POST['email']) : false;
 
     /* Array of errors */
     $errors = array();
@@ -75,8 +77,6 @@ if (isset($_POST))
         $sql = "INSERT INTO users
                 VALUES(NULL, '$first_n', '$second_n', '$email', '$encrypt_pass', CURDATE());";
         $save = mysqli_query($connection, $sql);
-
-        var_dump(mysqli_error($connection));
 
         if ($save) 
         {

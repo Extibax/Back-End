@@ -18,7 +18,7 @@
             <div class="sign-up block-aside">
                 <h3>Sign up</h3>
 
-                <!-- Show Errors -->
+                <!-- Show Errors & Completed ones -->
                 <?php if(isset($_SESSION['completed'])): ?>
                     <div class="alert alert-success">
                         <?= $_SESSION['completed'] ?>

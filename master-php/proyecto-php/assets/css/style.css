@@ -24,6 +24,25 @@ body {
     background: url(../img/cubes.png), #F4F4F4;
 }
 
+/* Alerts */
+.alert {
+    padding: 5px;
+    font-size: 14px;
+    box-shadow: 0 1px 3px #CCC;
+    margin-bottom: 10px;
+    border-radius: 2px;
+}
+
+.alert-error {
+    background: #F8D7DA;
+    color: red;
+}
+
+.alert-success {
+    background: #D4EDDA;
+    color: green;
+}
+
 /* Header */
 .header {
     width: 85%;
@@ -213,3 +232,4 @@ input[type="submit"] {
     padding: 15px;
     text-align: center;
 }
+

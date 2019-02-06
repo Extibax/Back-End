@@ -6,6 +6,8 @@
 <head>
     <!-- Meta UTF-8 -->
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <!-- Link Favicon -->
+    <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
     <!-- Link CSS -->
     <link rel='stylesheet' href='assets/css/style.css'>
 

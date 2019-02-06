@@ -2,10 +2,10 @@
 
 <!-- Sidebar -->
 <aside class="sidebar">
-            <!-- Sign in -->
-            <div class="sign-in block-aside">
-                <h3>Sign in</h3>
-                <form action="sign-in.php" method="POST">
+            <!-- Log in -->
+            <div class="log-in block-aside">
+                <h3>Log in</h3>
+                <form action="log-in.php" method="POST">
                     <label for="email">Email</label>
                     <input type="email" name="email" class="email">
                     <label for="password">Password</label>
@@ -18,6 +18,16 @@
             <div class="sign-up block-aside">
                 <h3>Sign up</h3>
 
+                <!-- Show Errors -->
+                <?php if(isset($_SESSION['completed'])): ?>
+                    <div class="alert alert-success">
+                        <?= $_SESSION['completed'] ?>
+                    </div>
+                <?php elseif(isset($_SESSION['errors']['general'])): ?>
+                    <div class="alert alert-error">
+                        <?= $_SESSION['errors']['general'] ?>
+                    </div>
+                <?php endif; ?>
                 <form action="sign-up.php" method="POST">
 
                     <label for="first-name">First Name</label>

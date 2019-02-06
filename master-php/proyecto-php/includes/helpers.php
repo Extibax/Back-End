@@ -12,8 +12,17 @@ function showErrors($errors, $field)
 
 function deleteErrors()
 {
-    $_SESSION['errors'] = null;
-    unset($_SESSION['errors']);
+    if (isset($_SESSION['errors'])) {
+
+        $_SESSION['errors'] = null;
+        unset($_SESSION['errors']);
+    }
+
+    if (isset($_SESSION['completed'])) 
+    {
+        $_SESSION['completed'] = null;
+        unset($_SESSION['completed']);
+    }
 }
 
 ?>

@@ -3,6 +3,11 @@
 <!-- Sidebar -->
 <aside class="sidebar">
             <!-- Log in -->
+            <?php if(isset($_SESSION['user'])): ?>
+                <div class="logged-in block-aside">
+                    <h3>Bienvenido: <?= $_SESSION['user']['First_name'].' '.$_SESSION['user']['Email']; ?></h3>
+                </div>
+            <?php endif; ?>
             <div class="log-in block-aside">
                 <h3>Log in</h3>
                 <form action="log-in.php" method="POST">

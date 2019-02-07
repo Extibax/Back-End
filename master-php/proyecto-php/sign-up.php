@@ -15,8 +15,8 @@ if (isset($_POST))
     /* Collect the registry values */
     $first_n = isset($_POST['first-name']) ? mysqli_real_escape_string($connection, $_POST['first-name']) : false;
     $second_n = isset($_POST['second-name']) ? mysqli_real_escape_string($connection, $_POST['second-name']) : false;
-    $email = isset($_POST['email']) ? mysqli_real_escape_string($connection, $_POST['email']) : false;
-    $password = isset($_POST['password']) ? mysqli_real_escape_string($connection, $_POST['email']) : false;
+    $email = isset($_POST['email']) ? mysqli_real_escape_string($connection, trim($_POST['email'])) : false;
+    $password = isset($_POST['password']) ? mysqli_real_escape_string($connection, $_POST['password']) : false;
 
     /* Array of errors */
     $errors = array();
@@ -27,7 +27,8 @@ if (isset($_POST))
     if (!empty($first_n) && !is_numeric($first_n) && !preg_match("/[0-9]/", $first_n)) 
     {
         $valid_first_name = true;
-    } else 
+    } 
+    else 
     {
         $valid_first_name = false;
         $errors['first-name'] = "The First Name is invalid";
@@ -48,7 +49,8 @@ if (isset($_POST))
     if (!empty($email) && filter_var($email, FILTER_VALIDATE_EMAIL)) 
     {
         $valid_email = true;
-    } else 
+    } 
+    else 
     {
         $valid_email = false;
         $errors['email'] = "The Email is invalid";

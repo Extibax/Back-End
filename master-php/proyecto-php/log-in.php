@@ -5,6 +5,12 @@ require_once 'includes/connection.php';
 /* Collect form data */
 if (isset($_POST)) 
 {
+    /* Delete old error */
+    if (isset($_SESSION['log_in_error'])) {
+        unset($_SESSION['log_in_error']);
+    }
+
+    /* Collect form data */
     $email = $_POST['email'];
     $password = $_POST['password'];
 
@@ -21,20 +27,17 @@ if (isset($_POST))
         {
             /* Use a SESSION to save the user's data that start session */
             $_SESSION['user'] = $user;
-            if (isset($_SESSION['log_in_error'])) {
-                unset($_SESSION['log_in_error']);
-            }
         }
         else
         {
             /* If something is wrong, send a session with the error */
-            $_SESSION['log_in_error'] = "Incorret log in";
+            $_SESSION['log_in_error'] = "¡Incorret log in!";
             echo "Something is wrong";
         }
     }
     else
     {
-
+        $_SESSION['log_in_error'] = "¡Youre not registered!";
     }
 }
 

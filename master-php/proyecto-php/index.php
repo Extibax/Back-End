@@ -5,42 +5,22 @@
 <!-- Main -->
 <div class="main">
     <h1>Last Updates</h1>
-    <article class="entries">
-        <a href="">
-            <h2>Title of my entri</h2>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eleifend erat odio, eu pharetra
-                lacus pulvinar ut. Quisque dapibus diam risus
-            </p>
-        </a>
-    </article>
-    <article class="entries">
-        <a href="">
-            <h2>Title of my entri</h2>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eleifend erat odio, eu pharetra
-                lacus pulvinar ut. Quisque dapibus diam risus
-            </p>
-        </a>
-    </article>
-    <article class="entries">
-        <a href="">
-            <h2>Title of my entri</h2>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eleifend erat odio, eu pharetra
-                lacus pulvinar ut. Quisque dapibus diam risus
-            </p>
-        </a>
-    </article>
-    <article class="entries">
-        <a href="">
-            <h2>Title of my entri</h2>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eleifend erat odio, eu pharetra
-                lacus pulvinar ut. Quisque dapibus diam risus
-            </p>
-        </a>
-    </article>
+
+    <?php $entries = getEntries($connection); ?>
+    <?php if (!empty($entries)): ?>
+        <?php while ($entry = mysqli_fetch_assoc($entries)): ?>
+            <article class="entries">
+                <a href="entry.php?id=<?= $entry['id']; ?>">
+                    <h2><?= $entry['Title']; ?></h2>
+                    <span class="category-date"><?= $entry['Category'].' | '.$entry['Date']; ?></span>
+                    <p>
+                        <?= substr($entry['Description'], 0, 180). '...';  ?>
+                    </p>
+                </a>
+            </article>
+        <?php endwhile; ?>
+    <?php endif; ?>
+    
     <div class="view-all">
         <a href="">View all entries</a>
     </div>

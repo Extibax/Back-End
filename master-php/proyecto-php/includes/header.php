@@ -1,4 +1,5 @@
 <?php require_once 'connection.php' ?>
+<?php require_once 'helpers.php'?>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -27,12 +28,14 @@
         <nav class="menu">
             <ul>
                 <li><a href="index.php">Start</a></li>
-                <li><a href="paginahere">Category 1</a></li>
-                <li><a href="paginahere">Category 2</a></li>
-                <li><a href="paginahere">Category 3</a></li>
-                <li><a href="paginahere">Category 4</a></li>
-                <li><a href="paginahere">About me</a></li>
-                <li><a href="paginahere">Contact</a></li>
+                <?php $categories = getCategories($connection); ?>
+                <?php if (!empty($categories)): ?>
+                    <?php while ($category = mysqli_fetch_assoc($categories)): ?>
+                        <li><a href="category.php?id=<?= $category['id'] ?>"><?= $category['Name'] ?></a></li>
+                    <?php endwhile; ?>
+                <?php endif; ?>
+                <li><a href="index.php">About me</a></li>
+                <li><a href="index.php">Contact</a></li>
             </ul>
         </nav>
 

@@ -20,6 +20,12 @@ function deleteErrors()
         unset($_SESSION['errors']);
     }
 
+    if (isset($_SESSION['entry_errors'])) 
+    {
+
+        $_SESSION['entry_errors'] = null;
+    }
+
     if (isset($_SESSION['completed'])) 
     {
         $_SESSION['completed'] = null;

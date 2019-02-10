@@ -84,7 +84,7 @@ body {
     overflow: hidden;
 }
 
-.menu ul {
+/* .menu ul {
     list-style: none;
 }
 
@@ -100,9 +100,31 @@ body {
     padding-right: 10px;
     font-size: 14px;
     color: #838282;
+} */
+
+.menu ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    width: 100%;
+    height: 100%;
 }
 
-.menu ul li a:hover {
+.menu ul li {
+    list-style-type: none;
+    padding: 10px;
+    width: 100%;
+    height: 100%;
+}
+
+.menu ul li a {
+    display: block;
+    color: #838282;
+    width: 100%;
+}
+
+.menu ul li:hover {
     background: linear-gradient(to bottom, #F2F2F2 0, #DAD9D4 100%);
 }
 
@@ -136,7 +158,8 @@ body {
 label,
 input[type="text"],
 input[type="email"],
-input[type="password"] {
+input[type="password"],
+textarea {
     display: block;
     width: 95%;
     margin-top: 2px;
@@ -145,7 +168,8 @@ input[type="password"] {
 
 input[type="text"],
 input[type="email"],
-input[type="password"] {
+input[type="password"],
+textarea {
     margin-bottom: 10px;
     padding: 2px;
 }
@@ -219,6 +243,13 @@ input[type="submit"],
     font-size: 14px;
 }
 
+.main .select-category {
+    display: block;
+    margin-top: 2px;
+    margin-bottom: 10px;
+    padding: 2px;
+}
+
 .main h2 {
     font-size: 20px;
     color: #2979CD;
@@ -260,4 +291,3 @@ input[type="submit"],
     padding: 15px;
     text-align: center;
 }
-

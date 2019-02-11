@@ -22,7 +22,7 @@ if (isset($_POST))
     /* Array of errors */
     $errors = array();
 
-    /* Validation of before save it in the DB */
+    /* Validation of data before save it in the DB */
 
     /* Validation of Title Entry */
     if (!empty($title) && !is_numeric($title) && !preg_match("/[0-9]/", $title))

@@ -7,7 +7,7 @@
         <!-- Buttons -->
         <a href="create-category.php" class="btn btn-green">Create category</a>
         <a href="create-entry.php" class="btn">Create entries</a>
-        <a href="log-out.php" class="btn btn-orange">My data</a>
+        <a href="my-data.php" class="btn btn-orange">My data</a>
         <a href="log-out.php" class="btn btn-red">Log out</a>
     </div>
     <?php endif;?>
@@ -50,9 +50,9 @@
             <input type="text" name="first-name" class="first-name">
             <?php echo isset($_SESSION['errors']) ? showErrors($_SESSION['errors'], 'first-name') : '' ?>
 
-            <label for="second-name">Second Name</label>
-            <input type="text" name="second-name" class="second-name">
-            <?php echo isset($_SESSION['errors']) ? showErrors($_SESSION['errors'], 'second-name') : '' ?>
+            <label for="last-name">Last Name</label>
+            <input type="text" name="last-name" class="last-name">
+            <?php echo isset($_SESSION['errors']) ? showErrors($_SESSION['errors'], 'last-name') : '' ?>
 
             <label for="email">Email</label>
             <input type="email" name="email" class="email">

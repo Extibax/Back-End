@@ -14,7 +14,7 @@ if (isset($_POST))
 
     /* Collect the registry values */
     $first_n = isset($_POST['first-name']) ? mysqli_real_escape_string($connection, $_POST['first-name']) : false;
-    $second_n = isset($_POST['second-name']) ? mysqli_real_escape_string($connection, $_POST['second-name']) : false;
+    $last_n = isset($_POST['last-name']) ? mysqli_real_escape_string($connection, $_POST['last-name']) : false;
     $email = isset($_POST['email']) ? mysqli_real_escape_string($connection, trim($_POST['email'])) : false;
     $password = isset($_POST['password']) ? mysqli_real_escape_string($connection, $_POST['password']) : false;
 
@@ -34,15 +34,15 @@ if (isset($_POST))
         $errors['first-name'] = "The First Name is invalid";
     }
 
-    /* Validation of Second Name */
-    if (!empty($second_n) && !is_numeric($second_n) && !preg_match("/[0-9]/", $second_n)) 
+    /* Validation of last Name */
+    if (!empty($last_n) && !is_numeric($last_n) && !preg_match("/[0-9]/", $last_n)) 
     {
-        $valid_second_name = true;
+        $valid_last_name = true;
     } 
     else 
     {
-        $valid_second_name = false;
-        $errors['second-name'] = "The Second Name is invalid";
+        $valid_last_name = false;
+        $errors['last-name'] = "The last Name is invalid";
     }
 
     /* Validation of Email */
@@ -77,7 +77,7 @@ if (isset($_POST))
 
         /* Insert user in the table users in the DB */
         $sql = "INSERT INTO users
-                VALUES(NULL, '$first_n', '$second_n', '$email', '$encrypt_pass', CURDATE());";
+                VALUES(NULL, '$first_n', '$last_n', '$email', '$encrypt_pass', CURDATE());";
         $save = mysqli_query($connection, $sql);
 
         if ($save) 

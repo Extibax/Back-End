@@ -19,15 +19,15 @@
     <form action="update-data.php" method="POST">
 
         <label for="first-name">First Name</label>
-        <input type="text" name="first-name" class="first-name">
+        <input type="text" name="first-name" class="first-name" value="<?= $_SESSION['user']['First_name'] ?>">
         <?php echo isset($_SESSION['errors']) ? showErrors($_SESSION['errors'], 'first-name') : '' ?>
-1
+        
         <label for="last-name">Last Name</label>
-        <input type="text" name="last-name" class="last-name">
+        <input type="text" name="last-name" class="last-name" value="<?= $_SESSION['user']['Last_name'] ?>">
         <?php echo isset($_SESSION['errors']) ? showErrors($_SESSION['errors'], 'last-name') : '' ?>
 
         <label for="email">Email</label>
-        <input type="email" name="email" class="email">
+        <input type="email" name="email" class="email" value="<?= $_SESSION['user']['Email'] ?>">
         <?php echo isset($_SESSION['errors']) ? showErrors($_SESSION['errors'], 'email') : '' ?>
 
         <input type="submit" name="submit" value="Update">

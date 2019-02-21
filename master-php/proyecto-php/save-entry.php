@@ -5,7 +5,7 @@ if (isset($_POST))
     /* Connection to the DB */
     require_once 'includes/connection.php';
 
-    $user_id = $_SESSION['user']['id'];
+    $user_id = $_SESSION['user']['ID'];
 
     $title = isset($_POST['title']) 
     ? mysqli_real_escape_string($connection, $_POST['title']) 
@@ -24,8 +24,10 @@ if (isset($_POST))
 
     /* Validation of data before save it in the DB */
 
+    /* && !preg_match("/[0-9]/", $title) */
+
     /* Validation of Title Entry */
-    if (!empty($title) && !is_numeric($title) && !preg_match("/[0-9]/", $title))
+    if (!empty($title) && !is_numeric($title))
     {
         $valid_title = true;
     }

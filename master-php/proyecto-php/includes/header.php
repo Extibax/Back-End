@@ -31,7 +31,7 @@
                 <?php $categories = getCategories($connection); ?>
                 <?php if (!empty($categories)): ?>
                     <?php while ($category = mysqli_fetch_assoc($categories)): ?>
-                        <li><a href="category.php?id=<?= $category['id'] ?>"><?= $category['Name'] ?></a></li>
+                        <li><a href="category.php?ID=<?= $category['ID'] ?>"><?= $category['Name'] ?></a></li>
                     <?php endwhile; ?>
                 <?php endif; ?>
                 <li><a href="index.php">About me</a></li>

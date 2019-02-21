@@ -52,22 +52,42 @@ function getCategories($connection)
     return $result;
 }
 
-function getEntries($connection) 
+function getCategory($connection, $ID)
+{
+    $sql = "SELECT * FROM categories WHERE ID = $ID;";
+    $categories = mysqli_query($connection, $sql);
+
+    $result = array();
+    if ($categories && mysqli_num_rows($categories) >= 1)
+    {
+        $result = mysqli_fetch_assoc($categories);
+    }
+
+    return $result;
+}
+
+function getEntries($connection, $limit = null, $category = null) 
 {
     $sql = 
     "SELECT e.*, c.Name AS 'Category' FROM entries e ".
-    "INNER JOIN categories c ON c.id = e.category_id ".
-    "ORDER BY e.id DESC LIMIT 4;";
+    "INNER JOIN categories c ON c.id = e.Category_id ";
+
+    if (!empty($category)) {
+        $sql .= "WHERE e.Category_id = $category ";
+    }
+
+    $sql .= "ORDER BY e.id DESC ";
+
+    if ($limit) {
+        $sql .= "LIMIT 4";
+    }
+
     $entries = mysqli_query($connection, $sql);
 
     $result = array();
     if ($entries && mysqli_num_rows($entries) >= 1) 
     {
         $result = $entries;
-    }
-    else
-    {
-        echo 'We dont have any entry';
     }
 
     return $result;

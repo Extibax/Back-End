@@ -4,9 +4,9 @@
 
 <!-- Main -->
 <div class="main">
-    <h1>Last Updates</h1>
+    <h1>All Updates</h1>
 
-    <?php $entries = getEntries($connection, true); ?>
+    <?php $entries = getEntries($connection); ?>
     <?php if (!empty($entries)): ?>
         <?php while ($entry = mysqli_fetch_assoc($entries)): ?>
             <article class="entries">
@@ -20,10 +20,6 @@
             </article>
         <?php endwhile; ?>
     <?php endif; ?>
-    
-    <div class="view-all">
-        <a href="entries.php">View all entries</a>
-    </div>
 </div>
 
 <?php require_once 'includes/footer.php'?>

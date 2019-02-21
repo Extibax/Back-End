@@ -24,7 +24,7 @@
             <?php $categories = getCategories($connection) ?>
             <?php if (!empty($categories)): ?>
             <?php while ($category = mysqli_fetch_assoc($categories)): ?>
-                <option value="<?= $category['id'] ?>">
+                <option value="<?= $category['ID'] ?>">
                     <?= $category['Name'] ?>
                 </option>
             <?php endwhile ?>

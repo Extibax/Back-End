@@ -17,7 +17,11 @@
 <div class="main">
 
     <h1><?= $current_entry['Title'] ?></h1>
-    <h2></h2>
+    <a href="category.php?ID=<?= $current_entry['Category_id'] ?>" >
+        <h2><?= $current_entry['Category'] ?></h2>
+    </a>
+    <h4><?= $current_entry['Date'] ?></h4>
+    <p><?= $current_entry['Description'] ?></p>
     
 </div>
 

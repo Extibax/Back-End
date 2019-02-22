@@ -20,7 +20,7 @@
     <?php if (!empty($entries) && mysqli_num_rows($entries) >= 1): ?>
         <?php while ($entry = mysqli_fetch_assoc($entries)): ?>
             <article class="entries">
-                <a href="entry.php?id=<?= $entry['ID']; ?>">
+                <a href="entry.php?ID=<?= $entry['ID']; ?>">
                     <h2><?= $entry['Title']; ?></h2>
                     <span class="category-date"><?= $entry['Category'].' | '.$entry['Date']; ?></span>
                     <p>

@@ -1,0 +1,171 @@
+.main {
+    width: 100%;
+    color: #29242A;
+    background: #F2F2F2;
+    padding: 20px;
+    margin-top: 50px;
+}
+
+.main  p {
+    margin-bottom: 20px;
+    font-size: 15px;
+    line-height: 30px;
+}
+
+.title {
+    font-size: 35px;
+    line-height: 35px;
+}
+
+.main .about-me .container {
+    display: flex;
+    flex-direction: column;
+}
+
+.main .about-me .image {
+    margin: -100px auto 0 auto;
+}
+
+.main .about-me .image img {
+    width: 150px;
+    height: 150px;
+    border-radius: 100%;
+    border: 5px solid rgba(223, 193, 193, 0.2);
+}
+
+.main .about-me .text {
+    text-align: center;
+    margin: 50px 0 25px 0;
+}
+
+.main .about-me .text .title {
+    color: #6487A7;
+    margin-bottom: 25px;
+    font-weight: 300;
+}
+
+.languages-technologies {
+    color: #d39f06bd;
+    font-weight: 700;
+}
+
+.languages-technologies::selection,
+.soon::selection {
+    background: #000;
+}
+
+.bold {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.bold a {
+    color: #0077B5;
+}
+
+.bold a:visited {
+    color: #0077B5;
+}
+
+.soon {
+    color: #d8230f;
+}
+
+.main .works {
+    padding: 60px 0 0 0;
+    justify-content: center;
+    background: #F2F2F2;
+}
+
+.main .works .title {
+    margin: auto;
+    margin-bottom: 25px;
+    font-weight: 300;
+    color: #6487A7;
+    text-align: center;
+}
+
+.main .thumb {
+    margin-bottom: 25px;
+}
+
+.main .thumb img {
+    width: 100%;
+    vertical-align: top;
+}
+
+.main .works .container-works {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.main .works .container-works .work {
+    width: 30%;
+    margin-bottom: 40px;
+}
+
+.main .works .container-works .work .description {
+    text-align: center;
+}
+
+.main .works .container-works .work .description .name a {
+    font-weight: 700;
+    color: #29242A;
+    margin-bottom: 10px;
+    text-decoration: none;
+}
+
+.main .works .container-works .work .description .name a:visited {
+    color: #29242A;
+}
+
+.main .works .container-works .work .description .category {
+    font-size: 15px;
+    color: #636363;
+}
+
+.contact {
+    width: 100%;
+}
+
+.contact .container {
+    display: flex;
+    justify-content: center;
+}
+
+.contact .container .text-container {
+    text-align: center;
+}
+
+.contact .container .text-container .title {
+    color: #6487A7;
+    margin-bottom: 25px;
+    font-weight: 300;
+}
+
+.contact .container .text-container .whatsapp, 
+.contact .container .text-container .email, 
+.contact .container .text-container .linkedin {
+    font-size: 18px;
+}
+
+.contact .container .text-container .email a {
+    cursor: pointer;
+    text-decoration: none;
+    color: #AC3B2E;
+}
+
+.contact .container .text-container .emai a:visited {
+    color: #AC3B2E;
+}
+
+.contact .container .text-container .linkedin a {
+    text-decoration: none;
+    color: #0077B5;
+}
+
+.contact .container .text-container .linkedin a:visited {
+    color: #0077B5;
+}

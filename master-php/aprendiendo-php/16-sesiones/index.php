@@ -18,5 +18,3 @@ $_SESSION['variable_persistente'] = "Soy una sesion activa";
 echo $variable_normal.'<br>';
 
 echo $_SESSION['variable_persistente'];
-
-coun

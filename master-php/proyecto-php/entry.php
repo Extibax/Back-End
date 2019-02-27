@@ -22,6 +22,10 @@
     </a>
     <h4><?= $current_entry['Date'] ?></h4>
     <p><?= $current_entry['Description'] ?></p>
+    <?php if(isset($_SESSION['user']) && $_SESSION['user']['ID'] == $current_entry['User_id']): ?>
+        <a href="edit-entry.php" class="btn btn-orange">Edit entry</a>
+        <a href="delete-entry.php" class="btn btn-red">Delete entry</a>
+    <?php endif ?>
     
 </div>
 

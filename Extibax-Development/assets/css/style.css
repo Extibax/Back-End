@@ -1,0 +1,123 @@
+@import url("header.css");
+@import url("name-profesion.css");
+@import url("main.css");
+@import url("footer.css");
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Montserrat, sans-serif;
+    background: #000 url('../img/Office.jpg') top right no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+header {
+    width: 100%;
+    margin: 25px 0 0 0 ;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* ----- ----- MEDIA QUERIES ----- ----- */
+
+@media screen and (min-height: 899px ), screen and (min-width: 1919px) {
+    body {
+        background-size: cover;
+    }
+}
+
+@media screen and (max-width: 975px) {
+    footer .author {
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .container {
+        width: 95%;
+    }
+
+    header {
+        margin: 5px 0;
+    }
+
+    .name-profession .container-text {
+        width: 100%;
+    }
+
+    .name-profession .container-text .text {
+        width: 100%;
+        padding: 10px 30px;
+    }
+
+    .name-profession .container-text .text .name {
+        font-size: 30px;
+        line-height: 30px;
+        padding: 0;
+        margin: 0;
+    }
+
+    .name-profession .container-text .text .profession {
+        font-size: 15px;
+        line-height: 15px;
+        margin: 10px;
+    }
+    
+    .main .works .container-works .work {
+        width: 46%;
+    }
+
+    footer {
+        flex-direction: column;
+        padding: 20px 0;
+    }
+
+    footer .author {
+        padding: 0 auto;
+        text-align: center;
+        display: block;
+    }
+
+    footer .social-networks {
+        padding: 0 auto;
+        text-align: center;
+        line-height: 30px;
+        /* display: block; */
+    }
+    
+}
+
+@media screen and (max-width: 600px) {
+    header {
+        flex-direction: column;
+        padding-bottom: 20px;
+    }
+
+    header .menu {
+        width: 100%;
+        text-align: center;
+        padding: 10px;
+    }
+
+    header .menu ul li {
+        margin: 0 auto;
+    }
+
+    header .logo {
+        margin-bottom: 20px;
+    }
+}

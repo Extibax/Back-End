@@ -15,7 +15,8 @@ if (true)
     }
     
     $query = 
-    "INSERT INTO habits (Habit_name, Habit_link) VALUES ('$habit_name', '$habit_link')";
+    "INSERT INTO habits (Habit_name, Habit_link) 
+    VALUES ('$habit_name', '$habit_link')";
 
     $result = mysqli_query($connection, $query);
 
@@ -26,9 +27,6 @@ if (true)
     {
         echo 2;
     }
-
-    var_dump($result);
-    die();
 }
 
 /* header('Location: ../index.php'); */

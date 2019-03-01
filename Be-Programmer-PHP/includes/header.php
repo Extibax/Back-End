@@ -13,11 +13,11 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
         integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <!-- Link Alertify & JQuery -->
-    <link rel="stylesheet" type="text/css" href="libraries/alertifyjs/css/themes/default.css">
-    <link rel="stylesheet" type="text/css" href="libraries/alertifyjs/css/alertify.css">
+    <link rel="stylesheet" type="text/css" href="librerias/js/alertifyjs/css/themes/default.css">
+    <link rel="stylesheet" type="text/css" href="librerias/js/alertifyjs/css/alertify.css">
 
-    <script src="libraries/jquery-3.3.1.min.js"></script>
-    <script src="libraries/alertifyjs/alertify.js"></script>
+<script src="librerias/js/jquery-3.2.1.min.js"></script>
+    <script src="librerias/js/alertifyjs/alertify.js"></script>
 
 
     <title>¡Be Programmer!</title>

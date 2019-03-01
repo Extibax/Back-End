@@ -47,44 +47,31 @@
 <?php require_once 'includes/footer.php' ?>
 
 <script type='text/javascript'>
-alertify.success('Welcome!');
-$(document).ready(() => {
-    $('#save_habit').click(() => {
-        alertify.warning($('#habit_name').val());
-        alertify.warning($('#habit_link').val());
-
-        if ($('#habit_name').val() == '')
+$(document).ready(function() {
+    $('#save_habit').click(function() {
+        if ($('#habit_name').val() == "")
         {
             alertify.error('¡Oh no!, You must enter a Habit Name');
             return false;
         }
-        else if ($('#habit_link').val().isEmpty())
+        else if ($('#habit_link').val() == "")
         {
             alertify.error('¡Oh no!, You must enter a Habit Link');
             return false;
         }
 
-        habit_name = $('#habit_name').val();
-        habit_link = $('#habit_link').val() 
-
-        url_post = "habit_name=" + habit_name + "&habit_link=" + habit_link;
-
-        console.log(url_post);
+        url_post = "habit_name=" + $('#habit_name').val() + "&habit_link=" + $('#habit_link').val();
 
         $.ajax({
             type: "POST",
             url: "save_habit.php",
             data: url_post,
-            success: function(r)
+            success: function(r) 
             {
-                if (r == 2)
-                {
-                    alertify.error('Something is wrong when add the habit');
-                }
-                else if (r == 1)
-                {
-                    $('#habit_form')[0].reset();
-                    alertify.success('Your Habit was added!');
+                if (r == 1) {
+                    alertify.success('All is OK');
+                } else {
+                    alertify.alert("Fallo al entrar");
                 }
             }
         });

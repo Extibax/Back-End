@@ -22,11 +22,11 @@
                 Routine
             </li>
             <li class="list-group-item">
-                    <div class="form-group d-flex" id="habit_form">
+                    <form action="" class="form-group d-flex" id="habit_form">
                         <input class="form-control" type="text" id="habit_name" placeholder="Habit Name">
                         <input class="form-control mx-2" type="text" id="habit_link" placeholder="Habit Link">
                         <button class="btn btn-primary" id="save_habit" name="save_habit"><i class="fas fa-check"></i></button>
-                    </div>
+                    </form>
             </li>
             <li class="list-group-item d-flex justify-content-between align-items-center">
                 <span>

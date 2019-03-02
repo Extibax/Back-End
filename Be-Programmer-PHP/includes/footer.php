@@ -11,7 +11,7 @@
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
 </script>
 <!-- Link Alertifyjs -->
-<script src="../libraries/alertifyjs/alertify.min.js"></script>
+<script src="libraries/alertifyjs/alertify.min.js"></script>
 <!-- Link My app -->
 <script src="app.js"></script>
 

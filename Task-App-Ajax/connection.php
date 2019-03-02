@@ -2,13 +2,9 @@
 
 session_start();
 
-$connection = mysqli_connet(
+$connection = mysqli_connect(
     'localhost',
     'root',
-    'admin',
+    '',
     'php_tests'
 );
-
-if ($connection) {
-    echo "Connection is OK";
-}

@@ -1,8 +1,8 @@
 <?php 
 
-if (true) 
+if (isset($_POST['save_habit'])) 
 {
-    require_once '../connection.php';
+    require_once 'connection.php';
 
     if (isset($_POST['habit_name']))
     {
@@ -13,7 +13,7 @@ if (true)
     {
         $habit_link = $_POST['habit_link'];
     }
-    
+
     $query = 
     "INSERT INTO habits (Habit_name, Habit_link) 
     VALUES ('$habit_name', '$habit_link')";
@@ -28,5 +28,7 @@ if (true)
         echo 2;
     }
 }
-
-/* header('Location: ../index.php'); */
+else
+{
+    echo 'We are not receiving data';
+}

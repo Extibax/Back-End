@@ -1,4 +1,4 @@
-$(() => {
+$(document).ready(() => {
     $('#search').keyup(() => {
         let search = $('#search').val();
         
@@ -7,9 +7,8 @@ $(() => {
             type: 'POST',
             data: { search },
             success: (response) => {
-                if (response == 1) {
-                    console.log('The task was saved correctly');
-                }
+                let tasked = JSON.parse(response);
+                console.log(tasked);
             }
         });
     });

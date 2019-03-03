@@ -1,4 +1,6 @@
-CREATE DATABASE Students;
+CREATE DATABASE Estudiantes CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+
+USE Estudiantes;
 
 CREATE TABLE Estudiantes
 (
@@ -7,7 +9,7 @@ CREATE TABLE Estudiantes
     Primer_apellido     VARCHAR(255) NOT NULL,
     Segundo_apellido    VARCHAR(255),
     CONSTRAINT pk_estudiantes PRIMARY KEY(ID)
-)ENGINE=InnoDb;
+);
 
 CREATE TABLE Colegios
 (
@@ -16,7 +18,7 @@ CREATE TABLE Colegios
     Direccion       VARCHAR(255),
     Telefono        VARCHAR(100) NOT NULL,
     CONSTRAINT pk_colegios PRIMARY KEY(ID)
-)ENGINE=InnoDb;
+);
 
 CREATE TABLE Grados
 (
@@ -24,7 +26,7 @@ CREATE TABLE Grados
     Cupo        INT(10) NOT NULL,
     Nombre      VARCHAR(100),
     CONSTRAINT pk_grados PRIMARY KEY(ID)
-)ENGINE=InnoDb;
+);
 
 CREATE TABLE Matriculas
 (
@@ -35,17 +37,17 @@ CREATE TABLE Matriculas
     CONSTRAINT pk_matriculas PRIMARY KEY(ID),
     CONSTRAINT fk_estudiantes FOREIGN KEY(Estudiante_id) REFERENCES Estudiantes(ID),
     CONSTRAINT fk_colegios FOREIGN KEY(Colegio_id) REFERENCES Colegios(ID),
-    CONSTRAINT fk_grados FOREIGN KEY(Grado_id) REFERENCES Grados(ID),
-)ENGINE=InnoDb;
+    CONSTRAINT fk_grados FOREIGN KEY(Grado_id) REFERENCES Grados(ID)
+);
 
 CREATE TABLE Grupos
 (
     ID          INT(11) AUTO_INCREMENT NOT NULL,
     Grado_id    INT(11) NOT NULL,
-    Nombre       VARCHAR(100) NOT NULL,
+    Nombre      VARCHAR(100) NOT NULL,
     CONSTRAINT pk_grupos PRIMARY KEY(ID),
     CONSTRAINT fk_grados FOREIGN KEY(Grado_id) REFERENCES Grados(ID)
-)ENGINE=InnoDb;
+);
 
 CREATE TABLE Profesores
 (
@@ -53,8 +55,8 @@ CREATE TABLE Profesores
     Materia_id      INT(11) NOT NULL,
     Director        VARCHAR(100) NOT NULL,
     CONSTRAINT pk_profesores PRIMARY KEY(ID),
-    CONSTRAINT fk_materias PRIMARY KEY(Materia_id) REFERENCES Materias(ID)
-)ENGINE=InnoDb;
+    CONSTRAINT fk_materias FOREIGN KEY(Materia_id) REFERENCES Materias(ID)
+);
 
 CREATE TABLE Materias
 (
@@ -62,8 +64,8 @@ CREATE TABLE Materias
     Profesor_id         INT(11) NOT NULL,
     Nombre              VARCHAR(100) NOT NULL,
     CONSTRAINT pk_materias PRIMARY KEY(ID),
-    CONSTRAINT fk_profesores FOREIGN KEY(Profesor_id) REFERENCES Profesores(ID);
-)ENGINE=InnoDb;
+    CONSTRAINT fk_profesores FOREIGN KEY(Profesor_id) REFERENCES Profesores(ID)
+);
 
 CREATE TABLE Cursos
 (
@@ -72,16 +74,16 @@ CREATE TABLE Cursos
     Materia_id      INT(11) NOT NULL,
     CONSTRAINT pk_cursos PRIMARY KEY(ID),
     CONSTRAINT fk_grupos FOREIGN KEY(Grupo_id) REFERENCES Grupos(ID),
-    CONSTRAINT fk_materias FOREIGN KEY(Materia_id) REFERENCES Materias(ID),
-)ENGINE=InnoDb;
+    CONSTRAINT fk_materias FOREIGN KEY(Materia_id) REFERENCES Materias(ID)
+);
 
 CREATE TABLE Periodos
 (
     ID          INT(11) AUTO_INCREMENT NOT NULL,
-    Fecha       DATE DEFAULT CURDATE() NOT NULL,
+    Fecha       DATE NOT NULL,
     Numero      INT(11) NOT NULL,
     CONSTRAINT pk_periodos PRIMARY KEY(ID)
-)ENGINE=InnoDb;
+);
 
 CREATE TABLE Evaluaciones
 (
@@ -90,12 +92,12 @@ CREATE TABLE Evaluaciones
     Periodo_id      INT(11) NOT NULL,
     Nombre          VARCHAR(255) NOT NULL,
     Nota            FLOAT(11) NOT NULL,
-    Fecha           DATE DEFAULT CURDATE() NOT NULL,
+    Fecha           DATE NOT NULL,
     Porcentaje      FLOAT(4),
     CONSTRAINT pk_evaluaciones PRIMARY KEY(ID),
     CONSTRAINT fk_materias FOREIGN KEY(Materia_id) REFERENCES Materias(ID),
-    CONSTRAINT fk_periodos FOREIGN KEY(Periodo_id) REFERENCES Periodos(ID),
-)ENGINE=InnoDb;
+    CONSTRAINT fk_periodos FOREIGN KEY(Periodo_id) REFERENCES Periodos(ID)
+);
 
 CREATE TABLE Competencias
 (
@@ -104,4 +106,4 @@ CREATE TABLE Competencias
     Descripcion         VARCHAR(255) NOT NULL,
     CONSTRAINT pk_competencias PRIMARY KEY(ID),
     CONSTRAINT fk_evaluaciones FOREIGN KEY(Evaluacion_id) REFERENCES Evaluaciones(ID)
-)ENGINE=InnoDb;
+);

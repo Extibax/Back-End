@@ -4,7 +4,6 @@ require_once 'connection.php';
 
 if (isset($_POST['search']))
 {
-    echo "POST search exists";
     $search = $_POST['search'];
 
     if (!empty($search)) 
@@ -28,6 +27,5 @@ if (isset($_POST['search']))
 
         $jsonstring = json_encode($json);
         echo $jsonstring;
-
     }
 }

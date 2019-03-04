@@ -4,7 +4,6 @@ $(document).ready(() => {
         if ($('#search').val()) 
         {
             let search = $('#search').val();
-
             $.ajax({
                 url: 'task_search.php',
                 type: 'POST',

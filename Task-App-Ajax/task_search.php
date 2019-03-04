@@ -4,7 +4,7 @@ require_once 'connection.php';
 
 if (isset($_POST['search']))
 {
-    $search = $_POST['search'];
+    $search = mysqli_real_escape_string($_POST['search']);
 
     if (!empty($search)) 
     {

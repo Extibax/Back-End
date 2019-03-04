@@ -1,4 +1,4 @@
-CREATE DATABASE Estudiantes CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+CREATE DATABASE IF NOT EXISTS Estudiantes CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 USE Estudiantes;
 
@@ -107,6 +107,10 @@ CREATE TABLE Competencia
     CONSTRAINT pk_competencia PRIMARY KEY(cod_Com),
     CONSTRAINT fk_evaluacione FOREIGN KEY(codigo_Ev) REFERENCES Evaluacion(cod_Ev)
 );
+
+INSERT INTO Estudiante (nombre_Est, primer_Ape_Est, segundo_Ape_Est) VALUES ("Ivan", "Duque", "Moros");
+INSERT INTO Matricula (codigo_Est, codigo_Col, codigo_Gra) VALUES (1, 1, 1);
+INSERT INTO Grado (cupo_Gra, nombre_Gra) VALUES (1, "Septimo");
 
 SELECT E.cod_Est, E.primer_Ape_Est, E.segundo_Ape_Est, E.nombre_Est
 FROM Estudiante E, Matricula M, Grado G

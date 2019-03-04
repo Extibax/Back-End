@@ -3,7 +3,6 @@ $(document).ready(() => {
     $('#search').keyup(() => {
         if ($('#search').val()) 
         {
-
             let search = $('#search').val();
 
             $.ajax({
@@ -26,7 +25,6 @@ $(document).ready(() => {
                 }
             });
         }
-
     });
 
     $('#task-form').submit((e) => {
@@ -35,9 +33,30 @@ $(document).ready(() => {
             Description: $('#Description').val()
         };
         $.post('task_add.php', postData, (response) => {
-            console.log(response);
+            $('#task-form').trigger('reset');
         });
         e.preventDefault();
+    });
+
+    $.ajax({
+        url: 'task_list.php',
+        type: 'GET',
+        success: (response) => {
+            let tasks = JSON.parse(response);
+            let template = '';
+            
+            tasks.forEach(task => {
+                template += 
+                `
+                <tr>
+                    <td>${task.ID}</td>
+                    <td>${task.Title}</td>
+                    <td>${task.Description}</td>
+                </tr>
+                `;
+            });
+            $('#Tasks').html(template);
+        }
     });
 
 });

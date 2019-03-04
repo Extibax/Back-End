@@ -6,9 +6,3 @@ $connection = mysqli_connect(
     'admin',
     'php_tests'
 );
-
-/* if ($connection) {
-    echo "The Connection is OK";
-} else {
-    echo "The Connection is BAD";
-} */

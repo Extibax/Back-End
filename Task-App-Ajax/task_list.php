@@ -25,5 +25,3 @@ while ($row = mysqli_fetch_array($result)) {
     $jsonstring = json_encode($json);
     echo $jsonstring;
 }
-
-    

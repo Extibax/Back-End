@@ -40,11 +40,13 @@ $(document).ready(() => {
     $.ajax({
         url: 'task_list.php',
         type: 'GET',
+        contentType: "application/json",
         success: (response) => {
             let tasks = JSON.parse(response);
             let template = '';
             
             tasks.forEach(task => {
+                console.log(task);
                 template += 
                 `
                 <tr>
@@ -54,7 +56,7 @@ $(document).ready(() => {
                 </tr>
                 `;
             });
-            $('#Tasks').html(template);
+            $('#tasks').html(template);
         }
     });
 

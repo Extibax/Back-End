@@ -1,4 +1,5 @@
 <?php
+header('Content-Type: application/json');
 
 require_once 'connection.php';
 
@@ -14,14 +15,12 @@ $json = array();
 while ($row = mysqli_fetch_array($result)) {
     /* $json = array($row['ID'], $row['Title'], $row['Description']); */
 
-    $json = array(
-        'ID'=>$row['ID'],
-        'Title'=>$row['Title'],
-        'Description'=>$row['Description']
-    );
+    $json[] = $row;
 
     /* var_dump($json); */
-
-    $jsonstring = json_encode($json);
-    echo $jsonstring;
 }
+
+$jsonstring = json_encode($json);
+echo $jsonstring;
+
+?>

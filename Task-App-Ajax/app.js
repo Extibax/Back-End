@@ -1,6 +1,6 @@
 $(document).ready(() => {
 
-    edit = false;
+    let edit = false;
 
     $('#task-result').hide();
     fetchTasks();
@@ -33,6 +33,7 @@ $(document).ready(() => {
 
     $('#task-form').submit((e) => {
         const postData = {
+            ID: $('#task-id').val(),
             Title: $('#Title').val(),
             Description: $('#Description').val()
         };
@@ -42,6 +43,7 @@ $(document).ready(() => {
         $.post(url, postData, (response) => {
             fetchTasks();
             $('#task-form').trigger('reset');
+            console.log(response);
         });
         e.preventDefault();
     });
@@ -52,19 +54,19 @@ $(document).ready(() => {
             type: 'GET',
             contentType: "application/json",
             success: (response) => {
-                /* let tasks = JSON.parse(response); */
                 let tasks = response;
+                console.log(tasks);
                 let template = '';
 
                 tasks.forEach(task => {
                     template +=
                         `
-                    <tr task-id="${task['ID']}">
-                        <td>${task['ID']}</td>
+                    <tr task-id="${task.ID}">
+                        <td>${task.ID}</td>
                         <td>
-                            <a class="task-edit" href="#">${task['Title']}</a>
+                            <a class="task-edit" href="#">${task.Title}</a>
                         </td>
-                        <td>${task['Description']}</td>
+                        <td>${task.Description}</td>
                         <td>
                             <div class="btn-group">
                                 <button class="task-delete btn btn-danger">
@@ -97,10 +99,9 @@ $(document).ready(() => {
         
         $.post('task_request_edit.php', {ID}, (response) => {
             const task = JSON.parse(response);
-            console.log(task.Title);
-            console.log(task['Title']);
-            $('#Title').val(task['Title']);
-            $('#Description').val(task['Description']);
+            $('#task-id').val(task.ID);
+            $('#Title').val(task.Title);
+            $('#Description').val(task.Description);
             edit = true;
         });
     });

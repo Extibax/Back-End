@@ -12,16 +12,7 @@ if (isset($_POST['ID'])) {
         die('Query Failed' . mysqli_error($connection));
     }
 
-    $json = array();
-
-    while ($row = mysqli_fetch_array($result)) 
-    {
-        $json[] = array(
-            'ID' => $row['ID'],
-            'Title' => $row['Title'],
-            'Description' => $row['Description']
-        );
-    }
+    $json = mysqli_fetch_array($result);
 
     $jsonstring = json_encode($json);
     echo $jsonstring;

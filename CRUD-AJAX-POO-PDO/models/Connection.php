@@ -17,7 +17,7 @@ class Connection
             $HOST = 'localhost';
             $DBNAME = 'php_tests';
             $USER = 'root';
-            $PASS = '';
+            $PASS = 'admin';
 
             $connection = 
             new PDO("mysql:host={$HOST}; dbname={$DBNAME}", $USER, $PASS);

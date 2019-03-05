@@ -15,5 +15,5 @@ if (isset($_POST['Title']))
     if (!$result) {
         die('Query Failed');
     }
-    echo 'Task saved';
+    echo 'Task saved!';
 }

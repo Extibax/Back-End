@@ -1,21 +1,22 @@
 $(document).ready(() => {
     $('#task-result').hide();
+    fetchTasks();
     $('#search').keyup(() => {
-        if ($('#search').val()) 
-        {
+        if ($('#search').val()) {
             let search = $('#search').val();
-
             $.ajax({
                 url: 'task_search.php',
                 type: 'POST',
-                data: {search},
+                data: {
+                    search
+                },
                 success: (response) => {
                     let tasks = JSON.parse(response);
                     let template = '';
 
                     tasks.forEach(task => {
                         template +=
-                        `<li>
+                            `<li>
                             ${task.Title}
                         </li>`
                     });
@@ -33,29 +34,63 @@ $(document).ready(() => {
             Description: $('#Description').val()
         };
         $.post('task_add.php', postData, (response) => {
+            fetchTasks();
             $('#task-form').trigger('reset');
         });
         e.preventDefault();
     });
 
-    $.ajax({
-        url: 'task_list.php',
-        type: 'GET',
-        success: (response) => {
-            let tasks = JSON.parse(response);
-            let template = '';
-            
-            tasks.forEach(task => {
-                template += 
-                `
-                <tr>
-                    <td>${task.ID}</td>
-                    <td>${task.Title}</td>
-                    <td>${task.Description}</td>
-                </tr>
-                `;
+    function fetchTasks() {
+        $.ajax({
+            url: 'task_list.php',
+            type: 'GET',
+            contentType: "application/json",
+            success: (response) => {
+                /* let tasks = JSON.parse(response); */
+                let tasks = response;
+                let template = '';
+
+                tasks.forEach(task => {
+                    template +=
+                        `
+                    <tr task-id="${task['ID']}">
+                        <td>${task['ID']}</td>
+                        <td>
+                            <a class="task-edit" href="#">${task['Title']}</a>
+                        </td>
+                        <td>${task['Description']}</td>
+                        <td>
+                            <div class="btn-group">
+                                <button class="task-delete btn btn-danger">
+                                    Delete
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    `;
+                });
+                $('#tasks').html(template);
+            }
+        });
+    }
+
+    $(document).on('click', '.task-delete', function() {
+        if (confirm('Are you sure, That you want delete it?')) {
+            let element = $(this)[0].parentElement.parentElement.parentElement;
+            let ID = $(element).attr('task-id');
+
+            $.post('task_delete.php', {ID}, (response) => {
+                fetchTasks();
             });
-            $('#Tasks').html(template);
+        }
+    });
+
+    $(document).on('click', '.task-edit', function(){
+        let element = $(this)[0].parentElement.parentElement;
+        let ID = $(element).attr('task-id');
+        
+        $.post('task_request_edit.php'), {ID}, (response) => {
+            console.log(response);
         }
     });
 

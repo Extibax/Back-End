@@ -1,0 +1,8 @@
+CREATE DATABASE IF NOT EXISTS php_tests;
+USE php_tests;
+CREATE TABLE IF NOT EXISTS tasks(
+    ID          INT(11) AUTO_INCREMENT NOT NULL,
+    Title       VARCHAR(100) NOT NULL,
+    Description VARCHAR(255) NOT NULL,
+    CONSTRAINT pk_tasks PRIMARY KEY(ID)
+);

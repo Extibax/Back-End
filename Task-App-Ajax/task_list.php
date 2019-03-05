@@ -1,4 +1,5 @@
 <?php
+header('Content-Type: application/json');
 
 require_once 'connection.php';
 
@@ -11,19 +12,15 @@ if (!$result) {
 
 $json = array();
 
-while ($row = mysqli_fetch_array($result)) 
-{
-    $json[] = array(
-        "ID" => $row['ID'],
-        "Title" => $row['Title'],
-        "Description" => $row['Description']
-    );
+while ($row = mysqli_fetch_array($result)) {
+    /* $json = array($row['ID'], $row['Title'], $row['Description']); */
 
-    /* $jsonstring = json_encode($json); */
-    /* echo $jsonstring; */
-    echo $json;
+    $json[] = $row;
+
+    /* var_dump($json); */
 }
 
-?>
+$jsonstring = json_encode($json);
+echo $jsonstring;
 
-Alicia'; SELECT * FROM datos WHERE nombre LIKE '%
+?>

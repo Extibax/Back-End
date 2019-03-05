@@ -1,4 +1,7 @@
 $(document).ready(() => {
+
+    edit = false;
+
     $('#task-result').hide();
     fetchTasks();
     $('#search').keyup(() => {
@@ -33,7 +36,10 @@ $(document).ready(() => {
             Title: $('#Title').val(),
             Description: $('#Description').val()
         };
-        $.post('task_add.php', postData, (response) => {
+
+        let url = edit === false ? 'task_add.php' : 'task_edit.php';
+
+        $.post(url, postData, (response) => {
             fetchTasks();
             $('#task-form').trigger('reset');
         });
@@ -89,9 +95,14 @@ $(document).ready(() => {
         let element = $(this)[0].parentElement.parentElement;
         let ID = $(element).attr('task-id');
         
-        $.post('task_request_edit.php'), {ID}, (response) => {
-            console.log(response);
-        }
+        $.post('task_request_edit.php', {ID}, (response) => {
+            const task = JSON.parse(response);
+            console.log(task.Title);
+            console.log(task['Title']);
+            $('#Title').val(task['Title']);
+            $('#Description').val(task['Description']);
+            edit = true;
+        });
     });
 
 });

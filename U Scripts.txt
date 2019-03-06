@@ -1,0 +1,2 @@
+//Dar permisos a una carpeta en especial
+sudo chown -R $USER:root /var/www

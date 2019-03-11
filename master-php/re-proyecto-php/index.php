@@ -125,6 +125,9 @@
                     </p>
                 </a>
             </article>
+            <div id="show-all">
+                <a href="#">Show All Entries</a>
+            </div>
         </div>
     </div>
     <div class="clear-fix"></div>

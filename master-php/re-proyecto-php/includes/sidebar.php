@@ -1,48 +1,55 @@
 <!-- Sidebar -->
 <aside id="sidebar">
+
+    <?php if (isset($_SESSION['user'])): ?>
+        <div id="user-block" class="block-aside" style="text-align: center;">
+            <h3>Welcome: <?= $_SESSION['user']['First_name'] .' '. $_SESSION['user']['Last_name'] ?></h3>
+        </div>
+    <?php endif; ?>
+
     <!-- Login -->
     <div id="login" class="block-aside">
         <h3>Identify</h3>
-        <form action="login.php" method="POST">
-            <label for="email">Email</label>
-            <input type="email" name="email" id="login_email">
-            <label for="password">Password</label>
-            <input type="password" name="password" id="login_password">
 
-            <input type="submit" value="Login">
+        <?= isset($_SESSION['login_error']['general']) ? showSessionMessages($_SESSION['login_error']['general'], "error") : false ?>
+
+        <form action="login.php" method="POST">
+            
+            <label for="login_email">Email</label>
+            <input type="email" name="login_email" id="login_email">
+            
+            <label for="login_password">Password</label>
+            <input type="password" name="login_password" id="login_password">
+
+            <input type="submit" name="login_submit" value="Login">
         </form>
     </div>
 
     <!-- Register -->
     <div id="register" class="block-aside">
         <h3>Identify</h3>
-        <?php if (isset($_SESSION['completed'])): ?>
-            <div class="alert alert-success">
-                <?= $_SESSION['completed'] ?>
-            </div>
-        <?php elseif (isset($_SESSION['errors']['register'])): ?>
-            <div class="alert alert-error">
-                <?= $_SESSION['errors']['register'] ?>
-            </div>
-        <?php endif; ?>
+
+        <?= isset($_SESSION['register_success']) ? showSessionMessages($_SESSION['register_success'], "success") : false ?>
+        <?= isset($_SESSION['register_errors']['general']) ? showServerMessages($_SESSION['register_errors']['general'], "error") : false ?>
+
         <form action="register.php" method="POST" novalidate>
-            <?php echo isset($_SESSION['errors']['first_name']) ? showErrors($_SESSION['errors']['first_name']) : false ?>
+            <?= isset($_SESSION['register_errors']['first_name']) ? showSessionMessages($_SESSION['register_errors']['first_name'], "error") : false ?>
             <label for="register_first_name">First Name</label>
             <input type="text" name="register_first_name">
 
-            <?php echo isset($_SESSION['errors']['last_name']) ? showErrors($_SESSION['errors']['last_name']) : false ?>
+            <?= isset($_SESSION['register_errors']['last_name']) ? showSessionMessages($_SESSION['register_errors']['last_name'], "error") : false ?>
             <label for="register_last_name">Last Name</label>
             <input type="text" name="register_last_name">
 
-            <?php echo isset($_SESSION['errors']['email']) ? showErrors($_SESSION['errors']['email']) : false ?>
+            <?= isset($_SESSION['register_errors']['email']) ? showSessionMessages($_SESSION['register_errors']['email'], "error") : false ?>
             <label for="email">Email</label>
             <input type="email" name="register_email">
 
-            <?php echo isset($_SESSION['errors']['password']) ? showErrors($_SESSION['errors']['password']) : false ?>
+            <?= isset($_SESSION['register_errors']['password']) ? showSessionMessages($_SESSION['register_errors']['password'], "error") : false ?>
             <label for="password">Password</label>
             <input type="password" name="register_password">
 
-            <input type="submit" name="submit" value="Register">
+            <input type="submit" name="register_submit" value="Register">
         </form>
         <?php clearSessionMessages() ?>
     </div>

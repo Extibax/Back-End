@@ -1,11 +1,11 @@
 <?php 
 
-function showErrors($errors)
+function showSessionMessages($errors, $alert_type)
 {
     $alert = "";
     if (isset($errors)) {
         $alert = 
-        "<div class='alert alert-error'>
+        "<div class='alert alert-$alert_type'>
             $errors
         </div>";
     }

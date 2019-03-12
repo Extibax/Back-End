@@ -227,3 +227,20 @@ input[type="submit"] {
     padding: 15px;
     text-align: center;
 }
+
+.alert {
+    padding: 5px;
+    font-size: 14px;
+    color: white;
+    background: #CCDFFF;
+    box-shadow: 0 1px 3px #CCC;
+    margin-bottom: 15px;
+}
+
+.alert-error {
+    background: red;
+}
+
+.alert-success {
+    background: green;
+}

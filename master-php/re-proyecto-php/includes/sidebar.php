@@ -16,6 +16,15 @@
     <!-- Register -->
     <div id="register" class="block-aside">
         <h3>Identify</h3>
+        <?php if (isset($_SESSION['completed'])): ?>
+            <div class="alert alert-success">
+                <?= $_SESSION['completed'] ?>
+            </div>
+        <?php elseif (isset($_SESSION['errors']['register'])): ?>
+            <div class="alert alert-error">
+                <?= $_SESSION['errors']['register'] ?>
+            </div>
+        <?php endif; ?>
         <form action="register.php" method="POST" novalidate>
             <?php echo isset($_SESSION['errors']['first_name']) ? showErrors($_SESSION['errors']['first_name']) : false ?>
             <label for="register_first_name">First Name</label>
@@ -35,6 +44,6 @@
 
             <input type="submit" name="submit" value="Register">
         </form>
-        <?php clearErrors() ?>
+        <?php clearSessionMessages() ?>
     </div>
 </aside>

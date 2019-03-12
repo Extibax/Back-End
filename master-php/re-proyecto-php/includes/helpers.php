@@ -13,6 +13,12 @@ function showErrors($errors)
     return $alert;
 }
 
-function clearErrors() {
-    unset($_SESSION['errors']);
+function clearSessionMessages() {
+    if (isset($_SESSION['errors'])) {
+        unset($_SESSION['errors']);
+    }
+
+    if (isset($_SESSION['completed'])) {
+        unset($_SESSION['completed']);
+    }
 }

@@ -30,14 +30,27 @@ if ($_POST['submit']) {
     }
 
     if (count($errors) == 0) {
-        
-        header('Location: index.php');
+
+        $secure_password = password_hash($register_password, PASSWORD_BCRYPT, ['cost'=>4]);
+
+        $query = 
+        "INSERT INTO users VALUES
+         (null, '$register_first_name', '$register_last_name', '$register_email', '$secure_password', CURDATE())";
+
+        $result = mysqli_query($connection, $query);
+
+        if ($result) {
+            $_SESSION['completed'] = "Registration has been completed successfully";
+        } else {
+            $_SESSION['errros']['register'] = "Fail to save the user";
+        }
 
     } else {
         $_SESSION['errors'] = $errors;
-        header('Location: index.php');
     }
 
 }
+
+header('Location: index.php');
 
 ?>

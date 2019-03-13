@@ -16,18 +16,18 @@ if (isset($_POST['login_submit']) && isset($_POST['login_email']) && isset($_POS
         if (password_verify($login_password, $login_user['Password'])) {
             $_SESSION['user'] = $login_user;
 
-            if (isset($_SESSION['login_error'])) { 
-                unset($_SESSION['login_error']);
+            if (isset($_SESSION['login_errors'])) { 
+                unset($_SESSION['login_errors']);
             }
         } else {
-            $_SESSION['login_error']['general'] = "¡Incorrect Login!";
+            $_SESSION['login_errors']['general'] = "¡Incorrect Login!";
         }
     } else {
-        $_SESSION['login_error']['general'] = "¡Incorrect Login!";
+        $_SESSION['login_errors']['general'] = "¡Incorrect Login!";
     }
 
 } else {
-    $_SESSION['login_error']['general'] = "¡Insert the email and password to login!";
+    $_SESSION['login_errors']['general'] = "¡Insert the email and password to login!";
 }
 
 header('Location: index.php');

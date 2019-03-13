@@ -1,3 +1,5 @@
+<?php require_once 'helpers.php' ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,12 +24,12 @@
                 <li>
                     <a href="index.php">Home</a>
                 </li>
-                <li>
-                    <a href="index.php">Category 1</a>
-                </li>
-                <li>
-                    <a href="index.php">Category 2</a>
-                </li>
+                <?php $categories = getCategories($connection); ?>
+                <?php while($category = mysqli_fetch_assoc($categories)): ?>
+                    <li>
+                        <a href="category.php?id=<?=$category['ID']?>"><?=$category['Name']?></a>
+                    </li>
+                <?php endwhile; ?>
                 <li>
                     <a href="index.php">About me</a>
                 </li>

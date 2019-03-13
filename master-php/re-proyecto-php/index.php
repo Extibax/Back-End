@@ -1,6 +1,3 @@
-<?php require_once 'includes/connection.php' ?>
-<?php require_once 'includes/helpers.php' ?>
-
 <?php require_once 'includes/header.php' ?>
 
         <?php require_once 'includes/sidebar.php' ?>

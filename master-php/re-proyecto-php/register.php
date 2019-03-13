@@ -46,7 +46,7 @@ if (isset($_POST['register_submit']) && isset($_POST['register_first_name']) && 
         }
 
     } else {
-        $_SESSION['register_errors'] = $errors;
+        $_SESSION['register_errors'] = $register_errors;
     }
 
 }

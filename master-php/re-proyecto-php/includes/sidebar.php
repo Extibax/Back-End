@@ -4,6 +4,11 @@
     <?php if (isset($_SESSION['user'])): ?>
         <div id="user-block" class="block-aside" style="text-align: center;">
             <h3>Welcome: <?= $_SESSION['user']['First_name'] .' '. $_SESSION['user']['Last_name'] ?></h3>
+
+            <a class="button button-large" href="">Create Entry</a>
+            <a class="button button-orange button-large" href="">Create Entry</a>
+            <a class="button button-green button-large" href="">My Account</a>
+            <a class="button button-red button-large" href="actions/close_session.php" class="button">Logout</a>
         </div>
     <?php endif; ?>
 
@@ -11,9 +16,9 @@
     <div id="login" class="block-aside">
         <h3>Identify</h3>
 
-        <?= isset($_SESSION['login_error']['general']) ? showSessionMessages($_SESSION['login_error']['general'], "error") : false ?>
+        <?= isset($_SESSION['login_errors']['general']) ? showSessionMessages($_SESSION['login_errors']['general'], "error") : false ?>
 
-        <form action="login.php" method="POST">
+        <form action="login.php" method="POST" novalidate>
             
             <label for="login_email">Email</label>
             <input type="email" name="login_email" id="login_email">
@@ -30,7 +35,7 @@
         <h3>Identify</h3>
 
         <?= isset($_SESSION['register_success']) ? showSessionMessages($_SESSION['register_success'], "success") : false ?>
-        <?= isset($_SESSION['register_errors']['general']) ? showServerMessages($_SESSION['register_errors']['general'], "error") : false ?>
+        <?= isset($_SESSION['register_errors']['general']) ? showSessionMessages($_SESSION['register_errors']['general'], "error") : false ?>
 
         <form action="register.php" method="POST" novalidate>
             <?= isset($_SESSION['register_errors']['first_name']) ? showSessionMessages($_SESSION['register_errors']['first_name'], "error") : false ?>

@@ -9,7 +9,7 @@
         <?php while ($entry = mysqli_fetch_assoc($entries)): ?>
         <article class="entry">
         <a href="entry.php?ID=<?= $entry['ID'] ?>"><h2><?= $entry['Title'] ?></h2></a>
-        <a href="category.php?ID=<?= $entry['Category_id'] ?>"><p><?= $entry['Name'] ?></p></a>
+        <span class="category_date"><?= $entry['Category_name']. " | " .$entry['Date'] ?></span>
             <p>
                 <?= substr($entry['Description'], 0, 180)."..." ?>
             </p>

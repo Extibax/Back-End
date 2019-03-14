@@ -7,6 +7,8 @@ $connection = mysqli_connect(
     'project_php_blog'
 );
 
-session_start();
+if (!isset($_SESSION)) {
+    session_start();
+}
 
 ?>

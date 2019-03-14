@@ -25,6 +25,18 @@ function clearSessionMessages() {
     if (isset($_SESSION['login_error'])) {
         unset($_SESSION['login_error']);
     }
+
+    if (isset($_SESSION['error'])) {
+        unset($_SESSION['error']);
+    }
+
+    if (isset($_SESSION['success'])) {
+        unset($_SESSION['success']);
+    }
+
+    if (isset($_SESSION['error']['general'])) {
+        unset($_SESSION['error']['general']);
+    }
 }
 
 function getCategories($connection) {
@@ -41,7 +53,7 @@ function getCategories($connection) {
 
 function getEntries($connection) {
     $query = 
-    "SELECT e.*, c.* 
+    "SELECT e.*, c.Name AS 'Category_name'
     FROM entries e
     INNER JOIN categories c 
     ON e.category_id = c.ID

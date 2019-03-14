@@ -13,6 +13,7 @@
     <?php endif; ?>
 
     <!-- Login -->
+    <?php if (!isset($_SESSION['user'])): ?>
     <div id="login" class="block-aside">
         <h3>Identify</h3>
 
@@ -58,4 +59,5 @@
         </form>
         <?php clearSessionMessages() ?>
     </div>
+    <?php endif; ?>
 </aside>

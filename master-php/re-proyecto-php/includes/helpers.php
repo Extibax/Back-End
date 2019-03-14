@@ -32,9 +32,26 @@ function getCategories($connection) {
     $result = mysqli_query($connection, $query);
 
     $categories = array();
-    if ($result && mysqli_num_rows($result)) {
+    if ($result && mysqli_num_rows($result) >= 1) {
         $categories = $result;
     } 
 
     return $categories;
+}
+
+function getEntries($connection) {
+    $query = 
+    "SELECT e.*, c.* 
+    FROM entries e
+    INNER JOIN categories c 
+    ON e.category_id = c.ID
+    ORDER BY e.ID DESC LIMIT 4";
+    $result = mysqli_query($connection, $query);
+
+    $entries = array();
+    if ($result && mysqli_num_rows($result) >= 1) {
+        $entries = $result;
+    } 
+
+    return $entries;
 }

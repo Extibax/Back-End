@@ -1,62 +1,27 @@
 <?php require_once 'includes/header.php' ?>
 
-        <?php require_once 'includes/sidebar.php' ?>
-        <!-- Main box -->
-        <div id="main">
-            <h1>Lasted entries</h1>
-            <article class="entry">
-                <h2>Title of my entry</h2>
-                <a href="">
-                    <p>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolore unde laudantium rerum vitae
-                        possimus voluptatem illo praesentium numquam vero voluptatum dolor repudiandae aut nobis,
-                        tenetur
-                        aliquam, atque repellendus eius soluta.
-                    </p>
-                </a>
-            </article>
+<?php require_once 'includes/sidebar.php' ?>
+<!-- Main box -->
+<div id="main">
+    <h1>Lasted entries</h1>
+    <?php $entries = getEntries($connection) ?>
+    <?php if (!empty($entries)) : ?>
+        <?php while ($entry = mysqli_fetch_assoc($entries)): ?>
+        <article class="entry">
+        <a href="entry.php?ID=<?= $entry['ID'] ?>"><h2><?= $entry['Title'] ?></h2></a>
+        <a href="category.php?ID=<?= $entry['Category_id'] ?>"><p><?= $entry['Name'] ?></p></a>
+            <p>
+                <?= substr($entry['Description'], 0, 180)."..." ?>
+            </p>
+        </article>
+        <?php endwhile; ?>
+    <?php endif; ?>
+    <div id="show-all">
+        <a href="#">Show All Entries</a>
+    </div>
+</div>
 
-            <article class="entry">
-                <h2>Title of my entry</h2>
-                <a href="">
-                    <p>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolore unde laudantium rerum vitae
-                        possimus voluptatem illo praesentium numquam vero voluptatum dolor repudiandae aut nobis,
-                        tenetur
-                        aliquam, atque repellendus eius soluta.
-                    </p>
-                </a>
-            </article>
-
-            <article class="entry">
-                <h2>Title of my entry</h2>
-                <a href="">
-                    <p>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolore unde laudantium rerum vitae
-                        possimus voluptatem illo praesentium numquam vero voluptatum dolor repudiandae aut nobis,
-                        tenetur
-                        aliquam, atque repellendus eius soluta.
-                    </p>
-                </a>
-            </article>
-
-            <article class="entry">
-                <h2>Title of my entry</h2>
-                <a href="">
-                    <p>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolore unde laudantium rerum vitae
-                        possimus voluptatem illo praesentium numquam vero voluptatum dolor repudiandae aut nobis,
-                        tenetur
-                        aliquam, atque repellendus eius soluta.
-                    </p>
-                </a>
-            </article>
-            <div id="show-all">
-                <a href="#">Show All Entries</a>
-            </div>
-        </div>
-    
-    <?php require_once 'includes/footer.php' ?>
+<?php require_once 'includes/footer.php' ?>
 </body>
 
 </html>

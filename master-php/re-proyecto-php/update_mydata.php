@@ -23,7 +23,7 @@ if (isset($_POST['mydata_submit']) && isset($_POST['mydata_first_name']) && isse
     }
 
     if (count($mydata_errors) == 0) {
-        $query = "UPDATE users SET (First_name, Last_name, Email) VALUES ('$mydata_first_name', '$mydata_last_name', $)";
+        $query = "UPDATE users SET (First_name, Last_name, Email) VALUES ('$mydata_first_name', '$mydata_last_name', '$mydata_email')";
         $result = mysqli_query($connection, $query);
 
         if ($result) {
@@ -31,5 +31,9 @@ if (isset($_POST['mydata_submit']) && isset($_POST['mydata_first_name']) && isse
         } else {
             $_SESSION['error']['general'] = "Your data was not updated successfully";
         }
+    } else {
+        $_SESSION['error']['update_mydata'] = $mydata_errors;
     }
 }
+
+header("Location: my_data.php");

@@ -3,6 +3,7 @@
 if (isset($_POST['mydata_submit']) && isset($_POST['mydata_first_name']) && isset($_POST['mydata_last_name']) && isset($_POST['mydata_email'])) {
     require_once 'includes/connection.php';
 
+    $user_id = $_SESSION['user']['ID'];
     $mydata_first_name = mysqli_escape_string($connection, $_POST['mydata_first_name']);
     $mydata_last_name = mysqli_escape_string($connection, $_POST['mydata_last_name']);
     $mydata_email = mysqli_escape_string($connection, $_POST['mydata_email']);
@@ -21,12 +22,15 @@ if (isset($_POST['mydata_submit']) && isset($_POST['mydata_first_name']) && isse
     if (empty($mydata_email) || is_numeric($mydata_first_name)) {
         $mydata_errors['mydata_email'] = "The new email is invalid";
     }
-
+    
+    echo "Before count errors";
     if (count($mydata_errors) == 0) {
-        $query = "UPDATE users SET (First_name, Last_name, Email) VALUES ('$mydata_first_name', '$mydata_last_name', '$mydata_email')";
+        $query = "UPDATE users SET First_name = '$mydata_first_name', Last_name = '$mydata_last_name', Email = '$mydata_email' WHERE ID = $user_id";
         $result = mysqli_query($connection, $query);
-
         if ($result) {
+            $_SESSION['user']['First_name'] = $mydata_first_name;
+            $_SESSION['user']['Last_name'] = $mydata_last_name;
+            $_SESSION['user']['Email'] = $mydata_email;
             $_SESSION['success'] = "Your data was updated successfully";
         } else {
             $_SESSION['error']['general'] = "Your data was not updated successfully";
@@ -36,4 +40,4 @@ if (isset($_POST['mydata_submit']) && isset($_POST['mydata_first_name']) && isse
     }
 }
 
-header("Location: my_data.php");
+header("Location: mydata.php");

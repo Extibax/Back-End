@@ -7,7 +7,7 @@
 
             <a class="button button-large" href="create_entry.php">Create Entry</a>
             <a class="button button-orange button-large" href="create_category.php">Create Category</a>
-            <a class="button button-green button-large" href="my_data.php">My Data</a>
+            <a class="button button-green button-large" href="mydata.php">My Data</a>
             <a class="button button-red button-large" href="actions/close_session.php" class="button">Logout</a>
         </div>
     <?php endif; ?>

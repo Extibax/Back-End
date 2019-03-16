@@ -147,10 +147,9 @@ input[type="submit"],
 .button {
     margin-top: 5px;
     margin-bottom: 5px;
-
     display: block;
     border-radius: 2px;
-    color: white;
+    color: #FFF;
     background: #007EE5;
     border: 1px solid #156785;
     text-align: center;
@@ -160,6 +159,7 @@ input[type="submit"],
 .button {
     text-align: center;
     width: 130px;
+    color: #FFF !important;
 }
 
 .button-large {

@@ -22,12 +22,28 @@ if (isset($_POST['save_entry']) && isset($_POST['entry_title']) && isset($_POST[
     }
 
     if (count($entry_errors) == 0) {
-        $query = "INSERT INTO entries VALUES (null, $user_id, $entry_category, '$entry_title', '$entry_description', CURDATE())";
+
+        if (isset($_GET['edit'])) {
+            $entry_id = $_GET['edit'];
+
+            $query = 
+            "UPDATE entries 
+            SET Title = '$entry_title', Description = '$entry_description', Category_id = $entry_category
+            WHERE ID = $entry_id AND User_id = $user_id";
+        } else {
+            $query = "INSERT INTO entries VALUES (null, $user_id, $entry_category, '$entry_title', '$entry_description', CURDATE())";
+        }
+
         $result = mysqli_query($connection, $query);
         header("Location: index.php");
     } else {
-        $_SESSION['error']['create_entry'] = $entry_errors;
-        header("Location: create_entry.php");
+        if (isset($_GET['edit'])) {
+            $_SESSION['edit_entry_error'] = $entry_errors;
+            header("Location: edit_entry.php?ID=".$_GET['edit']);
+        } else {
+            $_SESSION['create_entry_error'] = $entry_errors;
+            header("Location: create_entry.php");
+        }
     }
 
 } else {

@@ -11,17 +11,15 @@
     </p>
     <br>
     <form action="save_entry.php" method="POST">
-        <?php $create_entry_errors = isset($_SESSION['error']['create_entry']) ? $_SESSION['error']['create_entry'] : false ?>
-        <?= isset($_SESSION['error']['create_entry']) ? showSessionMessages($create_entry_errors['entry_title'], "error") : false ?>
+        <?= isset($_SESSION['create_entry_error']['entry_title']) ? showSessionMessages($_SESSION['create_entry_error']['entry_title'], "error") : false ?>
         <label for="entry_title">Title:</label>
         <input type="text" name="entry_title">
 
-        <?= isset($_SESSION['error']['create_entry']) ? showSessionMessages($create_entry_errors['entry_description'], "error") : false ?>
+        <?= isset($_SESSION['create_entry_error']['entry_description']) ? showSessionMessages($_SESSION['create_entry_error']['entry_description'], "error") : false ?>
         <label for="entry_description">Description:</label>
         <textarea type="text" name="entry_description" rows="8" cols="106"></textarea>
 
-        <?= isset($_SESSION['error']['create_entry']) && isset($create_entry_errors['entry_category']) ? 
-        showSessionMessages($create_entry_errors['entry_category'], "error") : false ?>
+        <?= isset($_SESSION['create_entry_error']['entry_category']) ? showSessionMessages($_SESSION['create_entry_error']['entry_category'], "error") : false ?>
         <label for="entry_category">Category:</label>
         <select name="entry_category">
             <?php $categories = getCategories($connection) ?>

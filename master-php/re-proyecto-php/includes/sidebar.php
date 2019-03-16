@@ -1,29 +1,38 @@
 <!-- Sidebar -->
 <aside id="sidebar">
 
-    <?php if (isset($_SESSION['user'])): ?>
-        <div id="user-block" class="block-aside" style="text-align: center;">
-            <h3>Welcome: <?= $_SESSION['user']['First_name'] .' '. $_SESSION['user']['Last_name'] ?></h3>
+    <div id="search" class="block-aside">
+        <h3>Search</h3>
 
-            <a class="button button-large" href="create_entry.php">Create Entry</a>
-            <a class="button button-orange button-large" href="create_category.php">Create Category</a>
-            <a class="button button-green button-large" href="mydata.php">My Data</a>
-            <a class="button button-red button-large" href="actions/close_session.php" class="button">Logout</a>
-        </div>
+        <form action="search.php" method="POST" novalidate>
+            <input type="email" name="search" id="search_input">
+            <input type="submit" value="Search">
+        </form>
+    </div>
+
+    <?php if (isset($_SESSION['user'])) : ?>
+    <div id="user-block" class="block-aside" style="text-align: center;">
+        <h3>Welcome: <?= $_SESSION['user']['First_name'] . ' ' . $_SESSION['user']['Last_name'] ?></h3>
+
+        <a class="button button-large" href="create_entry.php">Create Entry</a>
+        <a class="button button-orange button-large" href="create_category.php">Create Category</a>
+        <a class="button button-green button-large" href="mydata.php">My Data</a>
+        <a class="button button-red button-large" href="actions/close_session.php" class="button">Logout</a>
+    </div>
     <?php endif; ?>
 
     <!-- Login -->
-    <?php if (!isset($_SESSION['user'])): ?>
+    <?php if (!isset($_SESSION['user'])) : ?>
     <div id="login" class="block-aside">
         <h3>Identify</h3>
 
         <?= isset($_SESSION['login_errors']['general']) ? showSessionMessages($_SESSION['login_errors']['general'], "error") : false ?>
 
         <form action="login.php" method="POST" novalidate>
-            
+
             <label for="login_email">Email</label>
             <input type="email" name="login_email" id="login_email">
-            
+
             <label for="login_password">Password</label>
             <input type="password" name="login_password" id="login_password">
 
@@ -60,4 +69,4 @@
         <?php clearSessionMessages() ?>
     </div>
     <?php endif; ?>
-</aside>
+</aside> 

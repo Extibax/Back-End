@@ -3,8 +3,8 @@
 <?php require_once 'includes/sidebar.php' ?>
 <!-- Main box -->
 <div id="main">
-    <h1>Lasted entries</h1>
-    <?php $entries = getEntries($connection, true) ?>
+    <h1>All entries</h1>
+    <?php $entries = getEntries($connection) ?>
     <?php if (!empty($entries)) : ?>
         <?php while ($entry = mysqli_fetch_assoc($entries)): ?>
         <article class="entry">
@@ -16,9 +16,6 @@
         </article>
         <?php endwhile; ?>
     <?php endif; ?>
-    <div id="show-all">
-        <a href="entries.php">Show All Entries</a>
-    </div>
 </div>
 
 <?php require_once 'includes/footer.php' ?>

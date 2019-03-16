@@ -1,13 +1,12 @@
 <?php
 
 if (isset($_POST['mydata_submit']) && isset($_POST['mydata_first_name']) && isset($_POST['mydata_last_name']) && isset($_POST['mydata_email'])) {
-    require_once 'includes/connection.php';
+    require_once 'includes/helpers.php';
 
     $user_id = $_SESSION['user']['ID'];
     $mydata_first_name = mysqli_escape_string($connection, $_POST['mydata_first_name']);
     $mydata_last_name = mysqli_escape_string($connection, $_POST['mydata_last_name']);
     $mydata_email = mysqli_escape_string($connection, $_POST['mydata_email']);
-
 
     $mydata_errors = array();
 
@@ -19,11 +18,14 @@ if (isset($_POST['mydata_submit']) && isset($_POST['mydata_first_name']) && isse
         $mydata_errors['mydata_last_name'] = "The new last name is invalid";
     }
 
-    if (empty($mydata_email) || is_numeric($mydata_first_name)) {
-        $mydata_errors['mydata_email'] = "The new email is invalid";
+    if (issetEmail($connection, $user_id, $mydata_email)) {
+        if (empty($mydata_email) || is_numeric($mydata_first_name)) {
+            $mydata_errors['mydata_email'] = "The new email is invalid";
+        }
+    } else {
+        $mydata_errors['mydata_email'] = "The email you want to change is already in use";
     }
     
-    echo "Before count errors";
     if (count($mydata_errors) == 0) {
         $query = "UPDATE users SET First_name = '$mydata_first_name', Last_name = '$mydata_last_name', Email = '$mydata_email' WHERE ID = $user_id";
         $result = mysqli_query($connection, $query);
@@ -36,7 +38,7 @@ if (isset($_POST['mydata_submit']) && isset($_POST['mydata_first_name']) && isse
             $_SESSION['error']['general'] = "Your data was not updated successfully";
         }
     } else {
-        $_SESSION['error']['update_mydata'] = $mydata_errors;
+        $_SESSION['update_mydata_error'] = $mydata_errors;
     }
 }
 

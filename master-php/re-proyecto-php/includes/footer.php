@@ -5,3 +5,6 @@
 <footer id="footer">
     <p>Develop by Juan Bedoya &copy; 2019</p>
 </footer>
+</body>
+
+</html>

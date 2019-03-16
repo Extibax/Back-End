@@ -1,10 +1,14 @@
 <?php require_once 'includes/header.php' ?>
 
+<?php $current_category = getCategory($connection, $_GET['ID']) ?>
+
+<?php !isset($current_category['ID']) ? header("Location: index.php") : false ?>
+
 <?php require_once 'includes/sidebar.php' ?>
 <!-- Main box -->
 <div id="main">
-    <h1>Lasted entries</h1>
-    <?php $entries = getEntries($connection, true) ?>
+    <h1>All entries of <?= $current_category['Name'] ?></h1>
+    <?php $entries = getEntries($connection, false, $_GET['ID']) ?>
     <?php if (!empty($entries)) : ?>
         <?php while ($entry = mysqli_fetch_assoc($entries)): ?>
         <article class="entry">
@@ -15,10 +19,11 @@
             </p>
         </article>
         <?php endwhile; ?>
+    <?php else: ?>
+        <div class="alert alert-error">
+            No entries in this category
+        </div>
     <?php endif; ?>
-    <div id="show-all">
-        <a href="entries.php">Show All Entries</a>
-    </div>
 </div>
 
 <?php require_once 'includes/footer.php' ?>

@@ -12,8 +12,6 @@ $coche4 = new Coche("Rojo", "Mercedes", "Clase A", 350, 100, 3);
 $coche1->color ="Rosa";
 $coche1->setMarca("Audi");
 
-var_dump($coche1->getModelo());
-
-var_dump($coche1);
+echo $coche1->mostrarInformacion($coche2);
 
 ?>

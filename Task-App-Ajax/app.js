@@ -3,7 +3,9 @@ $(document).ready(() => {
     let edit = false;
 
     $('#task-result').hide();
+    
     fetchTasks();
+
     $('#search').keyup(() => {
         if ($('#search').val()) {
             let search = $('#search').val();

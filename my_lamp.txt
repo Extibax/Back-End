@@ -1,0 +1,27 @@
+apt install tasksel
+
+apt tasksel lamp-server
+
+apt install phpmyadmin (Ask: yes)
+
+# Include phpmyadmin config file in apache2.conf
+Include /etc/phpmyadmin/apache.conf
+
+//Allow root user in phpmyadmin
+//In mysql console update the pass with this:
+update user set authentication_string=PASSWORD("") where user="root";
+//After change user plugin auth_socket to mysql_native_password
+update user set plugin="mysql_native_password" where user="root";
+//And finish with:
+flush privileges;
+//Allow empty pass in phpmyadmin: Modify the file in /etc/phpmyadmin/config.inc.php and uncomment this:
+// $cfg['Servers'][$i]['AllowNoPassword'] = TRUE;
+
+//Install composer & dependences:
+
+curl -s https://getcomposer.org/installer | php
+
+mv composer.phar /usr/local/bin/composer
+
+composer install
+

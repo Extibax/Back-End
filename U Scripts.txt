@@ -1,2 +1,8 @@
 //Dar permisos a una carpeta en especial
 sudo chown -R $USER:root /var/www
+//Conocer Public IP Address
+dig +short myip.opendns.com @resolver1.opendns.com
+//Grant permissions to a bashscript
+chmod +x hello_world
+//Create modified script to git command
+git config --global alias.add-commit '!git add -A && git commit'

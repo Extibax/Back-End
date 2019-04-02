@@ -6,3 +6,5 @@ dig +short myip.opendns.com @resolver1.opendns.com
 chmod +x hello_world
 //Create modified script to git command
 git config --global alias.add-commit '!git add -A && git commit'
+//Start a bash script
+//#!/bin/bash

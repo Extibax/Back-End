@@ -1,70 +1,72 @@
 <!-- Sidebar -->
-<aside class="sidebar">
-    <!-- Log in -->
-    <?php if (isset($_SESSION['user'])): ?>
-    <div class="logged-in block-aside">
-        <h3>Bienvenido: <?=$_SESSION['user']['First_name'] . ' ' . $_SESSION['user']['Email'];?></h3>
-        <!-- Buttons -->
-        <a href="create-category.php" class="btn btn-green">Create category</a>
-        <a href="create-entry.php" class="btn">Create entries</a>
-        <a href="my-data.php" class="btn btn-orange">My data</a>
-        <a href="log-out.php" class="btn btn-red">Log out</a>
-    </div>
-    <?php endif;?>
+<aside id="sidebar">
 
-    <?php if (!isset($_SESSION['user'])): ?>
-    <div class="log-in block-aside">
-        <h3>Log in</h3>
-        <?php if (isset($_SESSION['log_in_error'])): ?>
-            <div class="alert alert-error">
-                <?= $_SESSION['log_in_error']; ?>
-            </div>
-        <?php endif;?>
+    <div id="search" class="block-aside">
+        <h3>Search</h3>
 
-        <form action="log-in.php" method="POST">
-            <label for="email">Email</label>
-            <input type="email" name="email" class="email">
-            <label for="password">Password</label>
-            <input type="password" name="password" class="password">
-            <input type="submit" value="Sign in">
+        <form action="search.php" method="POST" novalidate>
+            <input type="email" name="search" id="search_input">
+            <input type="submit" value="Search">
         </form>
     </div>
 
-    <!-- Sign up -->
-    <div class="sign-up block-aside">
-        <h3>Sign up</h3>
+    <?php if (isset($_SESSION['user'])) : ?>
+    <div id="user-block" class="block-aside" style="text-align: center;">
+        <h3>Welcome: <?= $_SESSION['user']['First_name'] . ' ' . $_SESSION['user']['Last_name'] ?></h3>
 
-        <!-- Show Errors & Completed ones -->
-        <?php if (isset($_SESSION['completed'])): ?>
-        <div class="alert alert-success">
-            <?=$_SESSION['completed']?>
-        </div>
-        <?php elseif (isset($_SESSION['errors']['general'])): ?>
-        <div class="alert alert-error">
-            <?=$_SESSION['errors']['general']?>
-        </div>
-        <?php endif;?>
-        <form action="sign-up.php" method="POST">
-
-            <label for="first-name">First Name</label>
-            <input type="text" name="first-name" class="first-name">
-            <?php echo isset($_SESSION['errors']) ? showErrors($_SESSION['errors'], 'first-name') : '' ?>
-
-            <label for="last-name">Last Name</label>
-            <input type="text" name="last-name" class="last-name">
-            <?php echo isset($_SESSION['errors']) ? showErrors($_SESSION['errors'], 'last-name') : '' ?>
-
-            <label for="email">Email</label>
-            <input type="email" name="email" class="email">
-            <?php echo isset($_SESSION['errors']) ? showErrors($_SESSION['errors'], 'email') : '' ?>
-
-            <label for="password">Password</label>
-            <input type="password" name="password" class="password">
-            <?php echo isset($_SESSION['errors']) ? showErrors($_SESSION['errors'], 'password') : '' ?>
-
-            <input type="submit" name="submit" value="Sign up">
-        </form>
-        <?php deleteErrors();?>
+        <a class="button button-large" href="create_entry.php">Create Entry</a>
+        <a class="button button-orange button-large" href="create_category.php">Create Category</a>
+        <a class="button button-green button-large" href="mydata.php">My Data</a>
+        <a class="button button-red button-large" href="actions/close_session.php" class="button">Logout</a>
     </div>
-    <?php endif;?>
-</aside>
+    <?php endif; ?>
+
+    <!-- Login -->
+    <?php if (!isset($_SESSION['user'])) : ?>
+    <div id="login" class="block-aside">
+        <h3>Identify</h3>
+
+        <?= isset($_SESSION['login_errors']['general']) ? showSessionMessages($_SESSION['login_errors']['general'], "error") : false ?>
+
+        <form action="login.php" method="POST" novalidate>
+
+            <label for="login_email">Email</label>
+            <input type="email" name="login_email" id="login_email">
+
+            <label for="login_password">Password</label>
+            <input type="password" name="login_password" id="login_password">
+
+            <input type="submit" name="login_submit" value="Login">
+        </form>
+    </div>
+
+    <!-- Register -->
+    <div id="register" class="block-aside">
+        <h3>Identify</h3>
+
+        <?= isset($_SESSION['register_success']) ? showSessionMessages($_SESSION['register_success'], "success") : false ?>
+        <?= isset($_SESSION['register_errors']['general']) ? showSessionMessages($_SESSION['register_errors']['general'], "error") : false ?>
+
+        <form action="register.php" method="POST" novalidate>
+            <?= isset($_SESSION['register_errors']['first_name']) ? showSessionMessages($_SESSION['register_errors']['first_name'], "error") : false ?>
+            <label for="register_first_name">First Name</label>
+            <input type="text" name="register_first_name">
+
+            <?= isset($_SESSION['register_errors']['last_name']) ? showSessionMessages($_SESSION['register_errors']['last_name'], "error") : false ?>
+            <label for="register_last_name">Last Name</label>
+            <input type="text" name="register_last_name">
+
+            <?= isset($_SESSION['register_errors']['email']) ? showSessionMessages($_SESSION['register_errors']['email'], "error") : false ?>
+            <label for="email">Email</label>
+            <input type="email" name="register_email">
+
+            <?= isset($_SESSION['register_errors']['password']) ? showSessionMessages($_SESSION['register_errors']['password'], "error") : false ?>
+            <label for="password">Password</label>
+            <input type="password" name="register_password">
+
+            <input type="submit" name="register_submit" value="Register">
+        </form>
+        <?php clearSessionMessages() ?>
+    </div>
+    <?php endif; ?>
+</aside> 

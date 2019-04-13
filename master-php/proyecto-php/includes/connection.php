@@ -1,16 +1,14 @@
 <?php
 
-$server = 'localhost';
-$username = 'root';
-$password = '';
-$db = 'extibax_blog';
-$connection = mysqli_connect($server, $username, $password, $db);
+$connection = mysqli_connect(
+    'localhost',
+    'root',
+    '',
+    'project_php_blog'
+);
 
-mysqli_query($connection, "SET NAMES 'utf8'");
-
-/* Start the SESSION */
-
-if (!isset($_SESSION)) 
-{
-    session_start();    
+if (!isset($_SESSION)) {
+    session_start();
 }
+
+?>

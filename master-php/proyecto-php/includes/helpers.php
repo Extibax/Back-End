@@ -1,112 +1,129 @@
-<?php
+<?php 
 
-function showErrors($errors, $field)
+require_once 'connection.php';
+
+function showSessionMessages($errors, $alert_type)
 {
-    $alert = '';
-    if (isset($errors[$field]) && !empty($field)) 
-    {
-        $alert = "<div class='alert alert-error'>"
-            . $errors[$field] ."</div>";
-        echo $alert;
+    $alert = "";
+    if (isset($errors)) {
+        $alert = 
+        "<div class='alert alert-$alert_type'>
+            $errors
+        </div>";
+    }
+
+    return $alert;
+}
+
+function clearSessionMessages() {
+    if (isset($_SESSION['register_error'])) {
+        unset($_SESSION['register_error']);
+    } else if (isset($_SESSION['register_success'])) {
+        unset($_SESSION['register_success']);
+    }
+
+    if (isset($_SESSION['login_error'])) {
+        unset($_SESSION['login_error']);
+    }
+
+    if (isset($_SESSION['update_mydata_error'])) {
+        unset($_SESSION['update_mydata_error']);
+    }
+
+    if (isset($_SESSION['edit_entry_error'])) {
+        unset($_SESSION['edit_entry_error']);
+    }
+
+    if (isset($_SESSION['error'])) {
+        unset($_SESSION['error']);
+    }
+
+    if (isset($_SESSION['success'])) {
+        unset($_SESSION['success']);
     }
 }
 
-function deleteErrors()
-{
-    if (isset($_SESSION['errors'])) 
-    {
+function getCategories($connection) {
+    $query = "SELECT * FROM categories";
+    $result = mysqli_query($connection, $query);
 
-        $_SESSION['errors'] = null;
-        $deleted = true;
-    }
+    $categories = array();
+    if ($result && mysqli_num_rows($result) >= 1) {
+        $categories = $result;
+    } 
 
-    if (isset($_SESSION['entry_errors'])) 
-    {
-
-        $_SESSION['entry_errors'] = null;
-        $deleted = true;
-    }
-
-    if (isset($_SESSION['completed'])) 
-    {
-        $_SESSION['completed'] = null;
-        $deleted = true;
-    }
+    return $categories;
 }
 
-function getCategories($connection)
-{
-    $sql = "SELECT * FROM categories;";
-    $categories = mysqli_query($connection, $sql);
+function getCategory($connection, $ID) {
+    $query = "SELECT * FROM categories WHERE ID = $ID";
+    $result = mysqli_query($connection, $query);
 
-    $result = array();
-    if ($categories && mysqli_num_rows($categories) >= 1)
-    {
-        $result = $categories;
-    }
-    else
-    {
-        echo 'We dont have any category';
-    }
+    $category = array();
+    if ($result && mysqli_num_rows($result) >= 1) {
+        $category = mysqli_fetch_assoc($result);
+    } 
 
-    return $result;
+    return $category;
 }
 
-function getCategory($connection, $ID)
-{
-    $sql = "SELECT * FROM categories WHERE ID = $ID;";
-    $categories = mysqli_query($connection, $sql);
-
-    $result = array();
-    if ($categories && mysqli_num_rows($categories) >= 1)
-    {
-        $result = mysqli_fetch_assoc($categories);
-    }
-
-    return $result;
-}
-
-function getEntries($connection, $limit = null, $category = null) 
-{
-    $sql = 
-    "SELECT e.*, c.Name AS 'Category' FROM entries e ".
-    "INNER JOIN categories c ON c.id = e.Category_id ";
+function getEntries($connection, $limit = false, $category = null, $search = null) {
+    $query = 
+    "SELECT e.*, c.Name AS 'Category_name', CONCAT(u.First_name, ' ', u.Last_name) AS 'User'
+    FROM entries e
+    INNER JOIN categories c ON e.category_id = c.ID
+    INNER JOIN users u ON e.User_id = u.ID";
 
     if (!empty($category)) {
-        $sql .= "WHERE e.Category_id = $category ";
+        $query .= " WHERE c.ID = $category";
     }
 
-    $sql .= "ORDER BY e.id DESC ";
+    if (!empty($search)) {
+        $query .= " WHERE e.Title LIKE '%$search%'";
+    }
+
+    $query .= " ORDER BY e.ID DESC";
 
     if ($limit) {
-        $sql .= "LIMIT 4";
+        $query .= " LIMIT 4";
     }
 
-    $entries = mysqli_query($connection, $sql);
+    $result = mysqli_query($connection, $query);
 
-    $result = array();
-    if ($entries && mysqli_num_rows($entries) >= 1) 
-    {
-        $result = $entries;
-    }
+    $entries = array();
+    if ($result && mysqli_num_rows($result) >= 1) {
+        $entries = $result;
+    } 
 
-    return $result;
+    return $entries;
 }
 
-function getEntry($connection, $ID)
-{
-    $sql = 
-    "SELECT e.*, c.Name AS 'Category' FROM entries e ".
-    "INNER JOIN categories c ON e.Category_id = c.ID ".
-    "WHERE e.ID = '$ID';";
+function getEntry($connection, $ID) {
+    $query = 
+    "SELECT e.*, c.Name AS 'Category_name', CONCAT(u.First_name, ' ', u.Last_name) AS User 
+    FROM entries e 
+    INNER JOIN categories c ON e.Category_id = c.ID
+    INNER JOIN users u ON e.User_id = u.ID
+    WHERE e.ID = $ID";
 
-    $entry = mysqli_query($connection, $sql);
+    $result = mysqli_query($connection, $query);
 
-    $result = array();
-    if ($entry && mysqli_num_rows($entry) >= 1)
-    {
-        $result = mysqli_fetch_assoc($entry);
+    $entry = array();
+    if ($result && mysqli_num_rows($result) >= 1) {
+        $entry = mysqli_fetch_assoc($result);
     }
 
-    return $result;
+    return $entry;
+}
+
+function issetEmail($connection, $user_ID, $user_Email) {
+    $query = "SELECT ID, Email FROM users WHERE email = '$user_Email'";
+    $result = mysqli_query($connection, $query);
+    $user_compare = mysqli_fetch_assoc($result);
+
+    if ($user_compare['ID'] == $user_ID || empty($user_compare)) {
+        return true;
+    } else {
+        return false;
+    }
 }

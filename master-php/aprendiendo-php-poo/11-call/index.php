@@ -18,7 +18,11 @@ class Persona
         $prefix_metodo = substr($name, 0, 3);
         if ($prefix_metodo == 'get') {
             $nombre_metodo = substr(strtolower($name), 3);
-            return $this->$nombre_metodo;
+            if (isset($this->$nombre_metodo)) {
+                return $this->$nombre_metodo;
+            } else {
+                return "El metodo no existe";
+            }
         } else {
             return "El metodo no existe";
         }

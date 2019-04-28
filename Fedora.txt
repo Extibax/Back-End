@@ -1,0 +1,35 @@
+#Here I add tips to me in the future
+
+Remove LAMP from RHEL
+
+Step 1: Uninstalling Mysql.
+
+# yum remove mysql mysql-server
+
+Output :
+
+Complete!
+
+Step 2: Then Uninstall PHP
+
+# yum remove php php-common php-devel
+
+Output :
+
+Complete!
+
+Step 3: Then Uninstall Mysql Libraries
+
+# yum remove mysql-libs
+
+Output :
+
+Complete!
+
+Step 4: Then Uninstall Apache
+
+# yum remove httpd
+
+Output :
+
+Complete!

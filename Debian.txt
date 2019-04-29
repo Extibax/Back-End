@@ -1,6 +1,6 @@
 apt install tasksel
 
-apt tasksel lamp-server
+tasksel install lamp-server
 
 apt install phpmyadmin (Ask: yes)
 
@@ -25,3 +25,7 @@ mv composer.phar /usr/local/bin/composer
 
 composer install
 
+# Create enviroment variables in /etc/enviroment
+
+# Create bak file is good!
+cp example_file{,.bak}

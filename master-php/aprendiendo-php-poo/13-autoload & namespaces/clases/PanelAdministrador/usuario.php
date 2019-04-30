@@ -12,4 +12,9 @@ class Usuario
         $this->nombre = "Sebastian Piedrahita";
         $this->email = "edgarjusebe@gmail.com";
     }
+
+    function informacion()
+    {
+        echo __NAMESPACE__;
+    }
 }

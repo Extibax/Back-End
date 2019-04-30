@@ -46,15 +46,23 @@ class Principal
         $this->categoria = new Categoria();
         $this->entrada = new Entrada();
     }
+
+    function informacion()
+    {
+        echo __LINE__;
+        echo __METHOD__;
+    }
 }
 
 //Usuario del namespace MisClases
 $Principal = new Principal();
+$Principal->informacion();
 var_dump($Principal->usuario);
 var_dump(get_class_methods($Principal));
 
 //Usuario del namespace PanelAdministrador
 $Usuario = new UsuarioAdmin();
+$Usuario->informacion();
 var_dump($Usuario);
 
 //Compobar si existe una clase:

@@ -32,7 +32,7 @@ use MisClases\Categoria;
 use MisClases\Entrada;
 
 //Namespaces PanelAdministrador
-use PanelAdministrador\Usuario as UsuarioAdmin;
+use PanelAdministrador\Usuario AS UsuarioAdmin;
 
 class Principal
 {
@@ -51,7 +51,18 @@ class Principal
 //Usuario del namespace MisClases
 $Principal = new Principal();
 var_dump($Principal->usuario);
+var_dump(get_class_methods($Principal));
 
 //Usuario del namespace PanelAdministrador
 $Usuario = new UsuarioAdmin();
 var_dump($Usuario);
+
+//Compobar si existe una clase:
+
+$clase = @class_exists('MisClases\Usuario');
+
+if ($clase) {
+    echo '<h1>La clase si existe</h1>';
+} else {
+    echo '<h1>La clase no existe</h1>';
+}

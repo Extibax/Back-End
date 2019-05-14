@@ -38,3 +38,6 @@ Complete!
 # The post link is: https://stackoverflow.com/questions/1580596/how-do-i-make-git-ignore-file-mode-chmod-changes
 find . -type d -exec chmod a+rwx {} \; # Make folders traversable and read/write
 find . -type f -exec chmod a+rw {} \;  # Make files read/write
+
+find . -type d -exec chmod 755 {} \;
+find . -type f -exec chmod 644 {} \;

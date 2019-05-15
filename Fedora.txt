@@ -36,8 +36,13 @@ Complete!
 
 # Fixed permissions problem in httpd server files, (saved on stackoverflow favorites)
 # The post link is: https://stackoverflow.com/questions/1580596/how-do-i-make-git-ignore-file-mode-chmod-changes
-find . -type d -exec chmod a+rwx {} \; # Make folders traversable and read/write
-find . -type f -exec chmod a+rw {} \;  # Make files read/write
+sudo find . -type d -exec chmod a+rwx {} \; # Make folders traversable and read/write
+sudo find . -type f -exec chmod a+rw {} \;  # Make files read/write
 
 find . -type d -exec chmod 755 {} \;
 find . -type f -exec chmod 644 {} \;
+
+i9k23a4s8zbd
+
+# Disable selinux service
+sudo setenforce 0
